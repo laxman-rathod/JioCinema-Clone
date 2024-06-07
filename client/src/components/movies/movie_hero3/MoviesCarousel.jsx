@@ -19,7 +19,7 @@ const MoviesCarousel = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/movies/top-ranked/",
+          "http://localhost:8000/api/movies/sifi-fantasy/",
           { cancelToken: source.token }
         );
         setMovies(response.data);

@@ -2,7 +2,7 @@ import moviesSchema from "../../schema/movies/moviesSchema.js";
 
 const getAllMovies = async (req, res) => {
   try {
-    const movies = await moviesSchema.find({});
+    const movies = await moviesSchema.find({}).lean();
     res.json(movies);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -12,8 +12,25 @@ const getAllMovies = async (req, res) => {
 const getTopRatedMovies = async (req, res) => {
   try {
     const movies = await moviesSchema
-      .find({ ratings: { $gte: 9 } })
-      .sort({ id: -1 });
+      .find({ voteAverage: { $gte: 8.5 } })
+      .sort({ title: 1 });
+    if (movies.length <= 0) {
+      res.status(500).json({ error: "Movie not found!" });
+      return;
+    }
+    res.json(movies);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const getsifiAndFantasyMovies = async (req, res) => {
+  try {
+    const movies = await moviesSchema
+      .find({
+        genre: { $in: ["Adventure", "Fantasy", "Science Fiction"] },
+      })
+      .sort({ voteAverage: -1 });
     if (movies.length <= 0) {
       res.status(500).json({ error: "Movie not found!" });
       return;
@@ -126,6 +143,7 @@ const getFamilyAndKidsMovies = async (req, res) => {
 export {
   getAllMovies,
   getTopRatedMovies,
+  getsifiAndFantasyMovies,
   getTopRankedMovies,
   getRomanticMovies,
   getDramaMovies,

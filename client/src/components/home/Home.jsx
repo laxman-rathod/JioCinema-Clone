@@ -12,10 +12,12 @@ import ContainerHero10 from "./hero10/ContainerHero10";
 import ContainerHero11 from "./hero11/ContainerHero11";
 import ContainerHero12 from "./hero12/ContainerHero12";
 import ContainerHero13 from "./hero13/ContainerHero13";
+import Test from "./Test";
 
 const Home = () => {
   return (
     <>
+    <Test/>
       <ContainerHero1 />
       <ContainerHero2 />
       <ContainerHero3 />
