@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* html,
+body {
+  background: #000;
+} */
+
+/* hover and dropdown box */
+.more-options:hover .down-arrow {
+  transform: rotate(180deg);
+}
+
+/* transition */
+.custome-transition {
+  transition: all 0.2s ease-in-out;
+}

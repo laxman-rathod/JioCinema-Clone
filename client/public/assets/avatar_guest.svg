@@ -1,0 +1,16 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="placeholder 1" clip-path="url(#clip0_13870_69867)">
+<mask id="mask0_13870_69867" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="80" height="80">
+<circle id="Ellipse 26982" cx="40" cy="40" r="40" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_13870_69867)">
+<path id="Vector" d="M80 0H0V80H80V0Z" fill="#343536"/>
+<path id="Vector_2" fill-rule="evenodd" clip-rule="evenodd" d="M51.1996 23.2C51.1996 29.3856 46.1852 34.4 39.9996 34.4C33.814 34.4 28.7996 29.3856 28.7996 23.2C28.7996 17.0144 33.814 12 39.9996 12C46.1852 12 51.1996 17.0144 51.1996 23.2ZM62.3996 52.6C62.3996 61.1052 52.3708 68 39.9996 68C27.6284 68 17.5996 61.1052 17.5996 52.6C17.5996 44.0948 27.6284 37.2 39.9996 37.2C52.3708 37.2 62.3996 44.0948 62.3996 52.6Z" fill="white"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_13870_69867">
+<rect width="80" height="80" fill="white"/>
+</clipPath>
+</defs>
+</svg>
