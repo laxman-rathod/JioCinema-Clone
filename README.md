@@ -1,3 +1,3 @@
 # JioCinema
 
-Building Full Stack JioCinema Clone..
+Building a Full Stack JioCinema Clone..
