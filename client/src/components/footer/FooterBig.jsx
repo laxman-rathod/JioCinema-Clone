@@ -1,9 +1,9 @@
 import React from "react";
-import "./styleButtons.css";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaYoutube } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const FooterBig = () => {
   return (
@@ -25,7 +25,7 @@ const FooterBig = () => {
         </div>
       </div>
 
-      <div className="flex items-center gap-10 relative -top-7">
+      <div className="flex items-center gap-10 ">
         <div className="font-extrabold text-white text-2xl">
           <h3>Connect With Us</h3>
           <div className="flex items-center justify-start gap-2 mt-4">
@@ -46,24 +46,27 @@ const FooterBig = () => {
         <div className="font-extrabold text-white text-2xl">
           <h3>Download the App</h3>
           <div className="flex items-center justify-start gap-3 mt-4">
-            <a
-              href="https://www.jiocinema.com/"
-              target="_blank"
-              className="market-btn google-btn"
-              role="button"
+            <Link
+              to={
+                "https://play.google.com/store/apps/details?id=com.jio.media.ondemand&hl=en_IN&gl=US&pli=1"
+              }
             >
-              <span className="market-button-subtitle">Download on the</span>
-              <span className="market-button-title">Google Play</span>
-            </a>
-            <a
-              href="https://www.jiocinema.com/"
-              target="_blank"
-              className="market-btn apple-btn"
-              role="button"
+              <img
+                src="/assets/googlePlay_market_button.svg"
+                alt="googlePlay_market_button"
+              />
+            </Link>
+
+            <Link
+              to={
+                "https://apps.apple.com/in/app/jiocinema-shows-movies-more/id1067316596"
+              }
             >
-              <span className="market-button-subtitle">Download on the</span>
-              <span className="market-button-title">App Store</span>
-            </a>
+              <img
+                src="/assets/appleStore_market_button.svg"
+                alt="appleStore_market_button"
+              />
+            </Link>
           </div>
         </div>
       </div>

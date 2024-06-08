@@ -16,6 +16,9 @@ export default {
       // app dark bg
       darkBg: "#0d0e10",
 
+      // page not found text colors
+      lightGray: "rgb(158 159 159)",
+
       // rgba
       goldenC: "rgb(192 162 98)",
 
@@ -33,6 +36,7 @@ export default {
       current: "currentColor",
       pink: "#d9008d",
       white: "#ffffff",
+      white2: "#fff",
       black: "#000000",
       gray100: "#808080",
       gray: "#b5b6b6", // text

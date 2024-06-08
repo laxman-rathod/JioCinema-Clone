@@ -16,7 +16,7 @@ const connUrl =
 
 const app = express();
 
-// Middleware
+// Middlewares
 app.use(cors()); // Use the cors middleware for all origis
 app.use(bodyParser.json());
 app.use(express.static("public")); // serve public files  here
