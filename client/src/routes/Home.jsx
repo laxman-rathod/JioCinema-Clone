@@ -12,10 +12,14 @@ import ContainerHero10 from "../components/home/hero10/ContainerHero10";
 import ContainerHero11 from "../components/home/hero11/ContainerHero11";
 import ContainerHero12 from "../components/home/hero12/ContainerHero12";
 import ContainerHero13 from "../components/home/hero13/ContainerHero13";
+import { useSelector } from "react-redux";
+import Profile from "../pages/Profile";
 
 const Home = () => {
+  const isActive = useSelector((store) => store.jcStates.currentState);
   return (
     <>
+      {isActive && <Profile />}
       <ContainerHero1 />
       <ContainerHero2 />
       <ContainerHero3 />

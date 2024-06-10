@@ -30,6 +30,9 @@ export default {
       searchText: "#918781",
       lightish: "#2e2f31", // header border
 
+      // profile bg
+      profileBackground: "rgb(23 24 26)",
+
       transparent: "transparent",
 
       // colors

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaMicrophone } from "react-icons/fa";
-import { currentStateFunc } from "../../app/slices/jcSlice";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { currentStateFunc } from "../../app/slices/jcSlice";
+import { usersData } from "../../pages/api/getUsersData";
 
 const HeaderNavBar = () => {
   const [isActive, setIsActive] = useState("home");
@@ -11,6 +13,8 @@ const HeaderNavBar = () => {
   const handleOnClick = (name) => {
     setIsActive(name);
   };
+
+  const dispatch = useDispatch();
 
   return (
     <div className="px-12 py-3 flex justify-between items-center border-b border-lightish text-white">
@@ -101,7 +105,15 @@ const HeaderNavBar = () => {
         </div>
 
         <div className="size-10">
-          <img src="/assets/avatar_guest.svg" alt="" />
+          <img
+            onClick={() => {
+              usersData();
+              dispatch(currentStateFunc({ currentState: true }));
+            }}
+            className="cursor-pointer"
+            src="/assets/avatar_guest.svg"
+            alt="profile logo"
+          />
         </div>
       </div>
     </div>

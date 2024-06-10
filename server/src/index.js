@@ -1,13 +1,16 @@
 import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import connectToDB from "./config/connectToDb.js";
 import { createMovies } from "./models/movies/moviesModels.js";
 import { createTVShows } from "./models/tv-shows/TVShowsModels.js";
 import moviesRouter from "./routes/movies/moviesRouter.js";
 import createNewMovies from "./models/movies/newMoviesModel.js";
+import usersRouter from "./routes/users_auth/usersRouter.js";
 
+// dot env variables configuration
 dotenv.config();
 
 const PORT = process.env.PORT || 8000;
@@ -16,13 +19,22 @@ const connUrl =
 
 const app = express();
 
+// client configuration options
+const corsOptions = {
+  origin: "http://localhost:5173",
+  credentials: true,
+};
+
 // Middlewares
-app.use(cors()); // Use the cors middleware for all origis
+app.use(express.json());
+app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(express.static("public")); // serve public files  here
+app.use(cors(corsOptions));
+app.use(express.static("public"));
 
 // routes
 app.use("/api/movies", moviesRouter);
+app.use("/api/users", usersRouter);
 
 connectToDB(connUrl);
 // createNewMovies();

@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const tvShows = new Schema({
+const tvShows = new mongoose.Schema({
   id: { type: String, required: true },
   title: { type: String, required: true },
   ratings: { type: String, required: true, min: 1, max: 10 },

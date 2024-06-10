@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* html,
+html,
 body {
-  background: #000;
-} */
+  width: 100%;
+  height: 100%;
+}
 
 /* hover and dropdown box */
 .more-options:hover .down-arrow {

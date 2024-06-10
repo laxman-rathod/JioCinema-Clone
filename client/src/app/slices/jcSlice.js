@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const jcSlice = createSlice({
   name: "jcStates",
-  initialState: { currentState: "home" },
+  initialState: { currentState: false },
   reducers: {
     currentStateFunc: (state, action) => {
       state.currentState = action.payload.currentState;
