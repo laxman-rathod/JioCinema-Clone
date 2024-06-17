@@ -35,7 +35,7 @@ const MoviesCarousel = () => {
   if (error) console.log("error..", error);
 
   return (
-    <div className="w-full h-64 cursor-pointer">
+    <div className="w-full h-[17rem] cursor-pointer">
       <Swiper
         slidesPerView={6.5}
         spaceBetween={10}

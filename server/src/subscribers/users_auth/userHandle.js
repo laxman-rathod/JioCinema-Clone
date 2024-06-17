@@ -80,7 +80,6 @@ const loggoutUser = asyncHandler(async (req, res, next) => {
   res.status(200).json({ success: true, message: "Logged out successfully" });
 });
 
-// not woriking both
 const getCurrentUserProfile = asyncHandler(async (req, res, next) => {
   const user = await usersSchema.findById(req.user._id);
   if (user) {
@@ -102,6 +101,7 @@ const updateCurrentUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     user.username = req.body.username || user.username;
     user.email = req.body.email || user.email;
+    user.mobileNumber = req.body.mobileNumber || user.mobileNumber;
 
     if (req.body.password) {
       const salt = await bcrypt.genSalt(10);
@@ -112,10 +112,11 @@ const updateCurrentUserProfile = asyncHandler(async (req, res) => {
     const updatedUser = await user.save();
 
     res.json({
+      success: true,
       _id: updatedUser._id,
       username: updatedUser.username,
       email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
+      mobileNumber: updatedUser.mobileNumber,
     });
   } else {
     res.status(404);

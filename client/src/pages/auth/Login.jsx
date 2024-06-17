@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { GoArrowLeft } from "react-icons/go";
+import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 
 const Login = () => {
   const [formData, setFormData] = useState({ mobileNumber: "", password: "" });
@@ -78,12 +78,27 @@ const Login = () => {
       <div className="text-sm leading-8 mt-3 pl-3 text-gray">
         <h4 className="ml-3">
           By continuing you agree to our
-          <span className="underline font-extrabold"> Terms of Use</span> and
+          <span className="underline font-extrabold cursor-pointer">
+            {" "}
+            Terms of Use
+          </span>{" "}
+          and
         </h4>
         <h4 className="leading-6">
           acknowledge that you have read our
-          <span className="underline font-extrabold"> Privacy Policy .</span>
+          <span className="underline font-extrabold cursor-pointer">
+            {" "}
+            Privacy Policy .
+          </span>
         </h4>
+      </div>
+      <div
+        onClick={() => navigate("/register")}
+        className=" cursor-pointer pt-4 text-white2"
+      >
+        <h2 className="font-bold text-sm hover:underline hover:text-pink">
+          Sign Up
+        </h2>
       </div>
     </div>
   );

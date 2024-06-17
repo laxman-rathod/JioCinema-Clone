@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles3.css";
+import axios from "axios";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -8,35 +9,32 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 
 const Carousels = () => {
-  const images = [
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-  ];
+  const [episodes, setEpisodes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/tv-shows/fresh-episodes/"
+        );
+        setEpisodes(response.data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) console.log("loading...");
+  if (error) console.log("error..", error);
 
   return (
-    <div className="w-full h-64 cursor-pointer">
+    <div className="w-full h-[17rem] cursor-pointer">
       <Swiper
         slidesPerView={6.5}
         spaceBetween={10}
@@ -52,9 +50,13 @@ const Carousels = () => {
         modules={[Navigation]}
         className="mySwiper"
       >
-        {images.map((image, ind) => (
-          <SwiperSlide key={ind}>
-            <img src={image.img} alt={`slide-${ind}`} className="rounded-lg" />
+        {episodes.map((show) => (
+          <SwiperSlide key={show.id}>
+            <img
+              src={show.thumbnail}
+              alt={`${show.title} poster`}
+              className="rounded-lg"
+            />
             <div className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.07] transition-opacity duration-300 rounded-lg"></div>
           </SwiperSlide>
         ))}

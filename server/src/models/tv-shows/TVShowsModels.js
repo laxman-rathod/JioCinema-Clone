@@ -3,44 +3,23 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
 const createTVShows = async () => {
-  const options = {
-    method: "GET",
-    url: "https://streaming-availability.p.rapidapi.com/shows/search/filters",
-    params: {
-      country: "in",
-      year_max: "2020",
-      series_granularity: "show",
-      genres: "romance,comedy",
-      order_direction: "asc",
-      order_by: "original_title",
-      year_min: "2020",
-      show_original_language: "en",
-      genres_relation: "and",
-      output_language: "en",
-      rating_max: "80",
-      show_type: "movie",
-      rating_min: "60",
-    },
-    headers: {
-      "x-rapidapi-key": "7352b8aa12msha4d1a1976ef54bdp1395a9jsnaa48ceb784e7",
-      "x-rapidapi-host": "streaming-availability.p.rapidapi.com",
-    },
-  };
   try {
-    const res = await axios.request(options);
+    const res = await axios.get("https://api.tvmaze.com/search/shows?q=booo");
     const data = res.data;
+    // console.log(data[0].show.id);
     for (const items of data) {
+      // const items = data[0];
       const tvShows = new tvShowsSchemas({
         id: uuidv4(),
-        title: items.title,
-        ratings: items.rating,
-        genre: items.genre,
-        contentType: items.itemType,
-        thumbnail: items.imageSet.verticalPoster.w720,
-        horizontalPoster: items.imageSet.horizontalPoster.w1440,
-        description: items.overview,
-        releaseDate: items.releaseYear,
-        streamingType: items.streamingOptions,
+        title: items.show.name,
+        // ratings: items.show.rating.average,
+        ratings: items.show.rating?.average || "7.5",
+        genres: items.show.genres,
+        thumbnail: items.show.image?.original || "",
+        description: items.show.summary,
+        releaseDate: new Date(items.show.premiered),
+        language: items.show.language,
+        runtime: items.show.averageRuntime,
       });
       await tvShows.save();
     }
@@ -51,3 +30,31 @@ const createTVShows = async () => {
 };
 
 export { createTVShows };
+
+// import tvShowsSchemas from "../../schema/tv-shows/tvShowsSchema.js";
+// import { v4 as uuidv4 } from "uuid";
+// import axios from "axios";
+
+// const createTVShows = async () => {
+//   try {
+//     const tvShows = new tvShowsSchemas({
+//       id: uuidv4(),
+//       title: "Gaanth",
+//       ratings: "8",
+//       genres: ["Crime", "Thriller"],
+//       thumbnail:
+//         "https://static.tvmaze.com/uploads/images/original_untouched/523/1308207.jpg",
+//       description:
+//         "Suspended Inspector Gadar Singh is summoned to a crime scene where the Chandel family is found hanging. One of them survives, leading to media frenzy and speculation of murder.",
+//       releaseDate: new Date("2024-06-11"),
+//       language: "Hindi",
+//       runtime: "45",
+//     });
+//     await tvShows.save();
+//     console.log("Document created!");
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// export { createTVShows };

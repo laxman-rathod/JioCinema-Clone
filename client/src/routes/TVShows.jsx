@@ -8,10 +8,14 @@ import ContainerHero6 from "../components/tv-shows/hero6/ContainerHero6";
 import ContainerHero7 from "../components/tv-shows/hero7/ContainerHero7";
 import ContainerHero8 from "../components/tv-shows/hero8/ContainerHero8";
 import ContainerHero9 from "../components/tv-shows/hero9/ContainerHero9";
+import { useSelector } from "react-redux";
+import Profile from "../pages/Profile";
 
 const TVShows = () => {
+  const isProfileActive = useSelector((store) => store.jcStates.currentState);
   return (
     <>
+      {isProfileActive && <Profile />}
       <ContainerHero1 />
       <ContainerHero2 />
       <ContainerHero3 />

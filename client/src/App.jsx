@@ -10,8 +10,7 @@ import TVShows from "./routes/TVShows";
 import PageNotFound from "./routes/PageNotFound";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
-import Logout from "./pages/auth/Logout";
-import Profile from "./pages/Profile";
+import ProfileSettings from "./pages/ProfileSettings";
 
 const router = createBrowserRouter([
   {
@@ -51,39 +50,17 @@ const router = createBrowserRouter([
       </div>
     ),
   },
-  // {
-  //   path: "/logout",
-  //   element: (
-  //     <div className="bg-darkBg">
-  //       <Logout />
-  //     </div>
-  //   ),
-  // },
   {
-    path: "/profile",
-    element: <Profile />,
+    path: "/profile-settings",
+    element: (
+      <div className="bg-darkBg">
+        <Headers />
+        <Outlet />
+        <Footer />
+      </div>
+    ),
+    children: [{ path: "/profile-settings", element: <ProfileSettings /> }],
   },
-  // {
-  //   path: "/profile",
-  //   element: (
-  //     <div className="dark:bg-darkBg">
-  //       <Headers />
-  //       <Outlet />
-  //       <Footer />
-  //     </div>
-  //   ),
-  //   errorElement: (
-  //     <div className="bg-darkBg">
-  //       <PageNotFound />
-  //     </div>
-  //   ),
-  //   children: [
-  //     { path: "/", element: <Home /> },
-  //     { path: "/sports", element: <Sports /> },
-  //     { path: "/movies", element: <Movies /> },
-  //     { path: "/tv-shows", element: <TVShows /> },
-  //   ],
-  // },
 ]);
 
 const App = () => {

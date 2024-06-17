@@ -9,6 +9,7 @@ import { createTVShows } from "./models/tv-shows/TVShowsModels.js";
 import moviesRouter from "./routes/movies/moviesRouter.js";
 import createNewMovies from "./models/movies/newMoviesModel.js";
 import usersRouter from "./routes/users_auth/usersRouter.js";
+import tvShowRouter from "./routes/tv-shows/tvShowRouter.js";
 
 // dot env variables configuration
 dotenv.config();
@@ -35,6 +36,7 @@ app.use(express.static("public"));
 // routes
 app.use("/api/movies", moviesRouter);
 app.use("/api/users", usersRouter);
+app.use("/api/tv-shows", tvShowRouter);
 
 connectToDB(connUrl);
 // createNewMovies();

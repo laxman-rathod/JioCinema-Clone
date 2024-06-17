@@ -1,50 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./styles1.css";
 import { Navigation } from "swiper/modules";
-import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 const Carousel = () => {
-  const topMovies = [
-    {
-      name: "nm",
-      id: uuidv4(),
-      img: "/assets/openhaimer_movie_image_full.jpg",
-    },
-    {
-      name: "nm",
-      id: uuidv4(),
-      img: "/assets/openhaimer_movie_image_full.jpg",
-    },
-    {
-      name: "nm",
-      id: uuidv4(),
-      img: "/assets/openhaimer_movie_image_full.jpg",
-    },
-    {
-      name: "nm",
-      id: uuidv4(),
-      img: "/assets/openhaimer_movie_image_full.jpg",
-    },
-    {
-      name: "nm",
-      id: uuidv4(),
-      img: "/assets/openhaimer_movie_image_full.jpg",
-    },
-    {
-      name: "nm",
-      id: uuidv4(),
-      img: "/assets/openhaimer_movie_image_full.jpg",
-    },
-    {
-      name: "nm",
-      id: uuidv4(),
-      img: "/assets/openhaimer_movie_image_full.jpg",
-    },
-  ];
+  const [tvShows, setTvShows] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/tv-shows/toprated-originals/"
+        );
+        setTvShows(response.data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) console.log("loading...");
+  if (error) console.log("error..", error);
 
   return (
     <div className="w-full h-80">
@@ -63,11 +49,11 @@ const Carousel = () => {
         modules={[Navigation]}
         className="mySwiper"
       >
-        {topMovies.map((movies) => (
-          <SwiperSlide key={movies.id}>
+        {tvShows.map((shows) => (
+          <SwiperSlide key={shows.id}>
             <img
-              src={movies.img}
-              alt={`${movies.name} movie thumbnail`}
+              src={shows.thumbnail}
+              alt={`${shows.title} movie thumbnail`}
               className="rounded-2xl cursor-pointer"
             />
           </SwiperSlide>

@@ -1,20 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaMicrophone } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { currentStateFunc } from "../../app/slices/jcSlice";
-import { usersData } from "../../pages/api/getUsersData";
+import { user_auth } from "../../app/slices/userAuth";
+import axios from "axios";
 
 const HeaderNavBar = () => {
   const [isActive, setIsActive] = useState("home");
+  const dispatch = useDispatch();
+
+  const fetchUsersData = async () => {
+    try {
+      const res = await axios.get("http://localhost:8000/api/users/profile", {
+        withCredentials: true,
+      });
+
+      if (res.data.success) {
+        const user = res.data;
+        dispatch(
+          user_auth({
+            success: true,
+            username: user.username,
+            email: user.email,
+            mobileNumber: user.mobileNumber,
+          })
+        );
+      } else {
+        dispatch(
+          user_auth({
+            success: false,
+            error: res.data.message || "An error occurred",
+          })
+        );
+      }
+    } catch (err) {
+      dispatch(
+        user_auth({
+          success: false,
+          error: err.message || "An error occurred",
+        })
+      );
+    }
+  };
 
   const handleOnClick = (name) => {
     setIsActive(name);
   };
 
-  const dispatch = useDispatch();
+  const handleProfileClick = () => {
+    fetchUsersData();
+    dispatch(currentStateFunc());
+  };
 
   return (
     <div className="px-12 py-3 flex justify-between items-center border-b border-lightish text-white">
@@ -106,10 +145,7 @@ const HeaderNavBar = () => {
 
         <div className="size-10">
           <img
-            onClick={() => {
-              usersData();
-              dispatch(currentStateFunc({ currentState: true }));
-            }}
+            onClick={handleProfileClick}
             className="cursor-pointer"
             src="/assets/avatar_guest.svg"
             alt="profile logo"

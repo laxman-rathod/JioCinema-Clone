@@ -16,10 +16,10 @@ import { useSelector } from "react-redux";
 import Profile from "../pages/Profile";
 
 const Home = () => {
-  const isActive = useSelector((store) => store.jcStates.currentState);
+  const isProfileActive = useSelector((store) => store.jcStates.currentState);
   return (
     <>
-      {isActive && <Profile />}
+      {isProfileActive && <Profile />}
       <ContainerHero1 />
       <ContainerHero2 />
       <ContainerHero3 />

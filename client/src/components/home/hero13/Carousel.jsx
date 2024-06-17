@@ -36,7 +36,7 @@ const Carousel = () => {
   ];
 
   return (
-    <div className="cursor-pointer w-full h-64">
+    <div className="cursor-pointer w-full h-[17rem]">
       <Swiper
         slidesPerView={6.5}
         spaceBetween={10}

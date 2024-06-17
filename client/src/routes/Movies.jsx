@@ -13,9 +13,13 @@ import ContainerHero11 from "../components/movies/movie_hero11/ContainerHero11";
 import ContainerHero12 from "../components/movies/movie_hero12/ContainerHero12";
 import ContainerHero13 from "../components/movies/movie_hero13/ContainerHero13";
 import ContainerHero14 from "../components/movies/movie_hero14/ContainerHero14";
+import { useSelector } from "react-redux";
+import Profile from "../pages/Profile";
 const Movies = () => {
+  const isProfileActive = useSelector((store) => store.jcStates.currentState);
   return (
     <>
+    {isProfileActive && <Profile />}
       <ContainerHero1 />
       <ContainerHero2 />
       <ContainerHero3 />

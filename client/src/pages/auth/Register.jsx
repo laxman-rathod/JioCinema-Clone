@@ -29,8 +29,8 @@ const Register = () => {
       );
       if (response.data.success) {
         localStorage.setItem("token", response.data.token); // there's no need
-        alert("Registration successful! Please login.");
-        navigate("/login");
+        alert("Registration successful!");
+        navigate("/");
       } else {
         alert("Login failed");
       }

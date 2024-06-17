@@ -29,7 +29,6 @@ const Carousel = () => {
     fetchData();
   }, []);
 
-  // console.log(movies);
   if (loading) console.log("loading...");
   if (error) console.log("error..", error);
 
@@ -51,11 +50,11 @@ const Carousel = () => {
         className="mySwiper"
       >
         {movies.map((movie) => (
-          <SwiperSlide key={movie.id}>
+          <SwiperSlide key={movie.id} className="w-full h-full">
             <img
               src={movie.thumbnail}
               alt={`${movie.title} poster`}
-              className="rounded-2xl object-center"
+              className="rounded-2xl  h-full w-full object-cover"
             />
           </SwiperSlide>
         ))}

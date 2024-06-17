@@ -2,13 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const jcSlice = createSlice({
   name: "jcStates",
-  initialState: { currentState: false },
+  initialState: { currentState: false, profileSettigsState: false },
   reducers: {
     currentStateFunc: (state, action) => {
-      state.currentState = action.payload.currentState;
+      state.currentState = !state.currentState;
+    },
+    openProfileSettings: (state, action) => {
+      state.profileSettigsState = !state.profileSettigsState;
     },
   },
 });
 
-export const { currentStateFunc } = jcSlice.actions;
+export const { currentStateFunc, openProfileSettings } = jcSlice.actions;
 export default jcSlice.reducer;

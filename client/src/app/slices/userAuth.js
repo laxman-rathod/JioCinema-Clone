@@ -2,21 +2,29 @@
 
 // const userAuth = createSlice({
 //   name: "userAuth",
-//   initialState: { username: "", email: "", password: "", mobileNumber: "" },
+//   initialState: {
+//     success: false,
+//     username: "",
+//     email: "",
+//     mobileNumber: "",
+//   },
 //   reducers: {
 //     user_auth: (state, action) => {
+//       state.success = action.payload.success;
 //       state.username = action.payload.username;
 //       state.email = action.payload.email;
-//       state.password = action.payload.password;
 //       state.mobileNumber = action.payload.mobileNumber;
 
 //       // store the users data in the local storage
-
+//     },
+//     clearUserAuth: (state) => {
+//       localStorage.removeItem("userData");
+//       return initialState; // Reset to the initial empty state
 //     },
 //   },
 // });
 
-// export const { user_auth } = userAuth.actions;
+// export const { user_auth, clearUserAuth } = userAuth.actions;
 // export default userAuth.reducer;
 
 import { createSlice } from "@reduxjs/toolkit";
