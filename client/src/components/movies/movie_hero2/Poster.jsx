@@ -6,7 +6,7 @@ const Poster = () => {
       <img
         src="/assets/openheimer.png"
         alt="movie poster"
-        className="rounded-lg w-full h-72 object-cover"
+        className="rounded-lg w-full h-72 object-cover brightness-95 hover:brightness-110 custome-transition"
       />
     </div>
   );

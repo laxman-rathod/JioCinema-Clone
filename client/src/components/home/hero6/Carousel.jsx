@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
 import "./styles6.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,32 +10,29 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 
 const Carousel = () => {
-  const images = [
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-  ];
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/movies/comedy-movies/"
+        );
+        setMovies(response.data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) console.log("loading...");
+  if (error) console.log("error..", error);
 
   return (
     <div className="w-full h-[17rem] cursor-pointer">
@@ -52,9 +51,13 @@ const Carousel = () => {
         modules={[Navigation]}
         className="mySwiper"
       >
-        {images.map((image, ind) => (
-          <SwiperSlide key={ind}>
-            <img src={image.img} alt={`slide-${ind}`} className="rounded-lg" />
+        {movies.map((movies) => (
+          <SwiperSlide key={movies.id}>
+            <img
+              src={movies.thumbnail}
+              alt={`${movies.title} poster`}
+              className="rounded-lg"
+            />
             <div className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.07] transition-opacity duration-300 rounded-lg"></div>
           </SwiperSlide>
         ))}

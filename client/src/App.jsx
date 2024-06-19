@@ -11,6 +11,8 @@ import PageNotFound from "./routes/PageNotFound";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import ProfileSettings from "./pages/ProfileSettings";
+import MoviesIntroContainer from "./pages/StreamingPages/MoviesIntroContainer";
+import HeaderNavBar from "./components/header/HeaderNavBar";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,16 @@ const router = createBrowserRouter([
       </div>
     ),
     children: [{ path: "/profile-settings", element: <ProfileSettings /> }],
+  },
+  {
+    path: "/streaming-details",
+    element: (
+      <div className="bg-darkBg">
+        <HeaderNavBar />
+        <MoviesIntroContainer />
+        <Footer />
+      </div>
+    ),
   },
 ]);
 

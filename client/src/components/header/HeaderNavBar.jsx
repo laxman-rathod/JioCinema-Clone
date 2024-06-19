@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaMicrophone } from "react-icons/fa";

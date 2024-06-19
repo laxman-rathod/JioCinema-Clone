@@ -13,7 +13,8 @@ const getTopRatedMovies = async (req, res) => {
   try {
     const movies = await moviesSchema
       .find({ voteAverage: { $gte: 8.5 } })
-      .sort({ title: 1 });
+      .sort({ title: 1 })
+      .lean();
     if (movies.length <= 0) {
       res.status(500).json({ error: "Movie not found!" });
       return;
@@ -27,10 +28,9 @@ const getTopRatedMovies = async (req, res) => {
 const getsifiAndFantasyMovies = async (req, res) => {
   try {
     const movies = await moviesSchema
-      .find({
-        genre: { $in: ["Adventure", "Fantasy", "Science Fiction"] },
-      })
-      .sort({ voteAverage: -1 });
+      .find({ voteAverage: { $gte: 6 } })
+      .sort({ title: -1 })
+      .lean();
     if (movies.length <= 0) {
       res.status(500).json({ error: "Movie not found!" });
       return;
@@ -140,6 +140,70 @@ const getFamilyAndKidsMovies = async (req, res) => {
   }
 };
 
+const englishMovies = async (req, res) => {
+  try {
+    const movies = await moviesSchema
+      .find({ voteAverage: { $gte: 7.5 } })
+      .sort({ title: 1 })
+      .lean();
+    if (movies.length <= 0) {
+      res.status(500).json({ error: "Movie not found!" });
+      return;
+    }
+    res.json(movies);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const romanticMovies = async (req, res) => {
+  try {
+    const movies = await moviesSchema
+      .find({ genre: { $in: "Romance" } })
+      .lean();
+    if (movies.length <= 0) {
+      res.status(500).json({ error: "Movie not found!" });
+      return;
+    }
+    res.json(movies);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const comedyMovies = async (req, res) => {
+  try {
+    const movies = await moviesSchema
+      .find({ genre: { $in: "Comedy" } })
+      .sort({ title: 1 })
+      .lean();
+    if (movies.length <= 0) {
+      res.status(500).json({ error: "Movie not found!" });
+      return;
+    }
+    res.json(movies);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const topMovies = async (req, res) => {
+  try {
+    const movies = await moviesSchema
+      .find({
+        genre: { $in: ["Action", "Adventure", "Science Fiction", "Fantasy"] },
+      })
+      .sort({ voteAverage: 1 });
+    if (movies.length <= 0) {
+      res.status(500).json({ error: "Movie not found!" });
+      return;
+    }
+    res.json(movies);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export {
   getAllMovies,
   getTopRatedMovies,
@@ -151,4 +215,8 @@ export {
   getActionMovies,
   getAnimeMovies,
   getFamilyAndKidsMovies,
+  englishMovies,
+  romanticMovies,
+  comedyMovies,
+  topMovies,
 };

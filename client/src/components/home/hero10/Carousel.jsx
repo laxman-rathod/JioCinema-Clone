@@ -41,7 +41,6 @@ const Carousel = () => {
     };
   }, []);
 
-  // console.log(movies);
   if (loading) console.log("loading...");
   if (error) console.log("error..", error);
 

@@ -16,6 +16,9 @@ export default {
       // app dark bg
       darkBg: "#0d0e10",
 
+      // tvshows lighten thik text color
+      lightenThik: "rgb(202 202 203)",
+
       // page not found text colors
       lightGray: "rgb(158 159 159)",
 
@@ -34,6 +37,9 @@ export default {
       profileBackground: "rgb(23 24 26)",
 
       transparent: "transparent",
+
+      // streaming landing page text color
+      semiWhite: "rgb(217 214 229)",
 
       // colors
       current: "currentColor",

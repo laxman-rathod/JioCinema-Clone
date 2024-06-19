@@ -1,5 +1,7 @@
 import express from "express";
 import {
+  comedyMovies,
+  englishMovies,
   getActionMovies,
   getAllMovies,
   getAnimeMovies,
@@ -10,7 +12,10 @@ import {
   getTopRankedMovies,
   getTopRatedMovies,
   getsifiAndFantasyMovies,
+  topMovies,
 } from "../../subscribers/movies/moviesHandle.js";
+import { romanticShows } from "../../subscribers/tv-shows/tvshowsHandle.js";
+import { streamMoviesDetails } from "../../subscribers/streaming_details/streamingDetails.js";
 
 const router = express.Router();
 
@@ -24,5 +29,12 @@ router.get("/horror", getHorrorMovies);
 router.get("/action", getActionMovies);
 router.get("/anime", getAnimeMovies);
 router.get("/family-kids", getFamilyAndKidsMovies);
+router.get("/hollywood-in-hindi", englishMovies);
+router.get("/romantic-movies", romanticShows);
+router.get("/comedy-movies", comedyMovies);
+router.get("/top-movies", topMovies);
+
+// streaming movies details
+router.get("/:title", streamMoviesDetails);
 
 export default router;

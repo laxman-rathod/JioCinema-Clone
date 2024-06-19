@@ -7,11 +7,22 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./styles1.css";
 import { Navigation } from "swiper/modules";
+import { currentMovieInfo } from "../../../app/slices/currentStreamInfo";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const MoviesCarousels = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleOnClick = (title, contentType) => {
+    console.log("You Clicked me..");
+    dispatch(currentMovieInfo({ title: title, contentType: contentType }));
+    navigate("/streaming-details");
+  };
 
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -66,7 +77,8 @@ const MoviesCarousels = () => {
             <img
               src={movie.thumbnail}
               alt={`${movie.title} poster`}
-              className="rounded-2xl object-cover"
+              className="rounded-2xl object-cover cursor-pointer"
+              onClick={() => handleOnClick(movie.title, movie.contentType)}
             />
           </SwiperSlide>
         ))}

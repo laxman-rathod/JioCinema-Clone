@@ -7,17 +7,19 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import { useSelector } from "react-redux";
 
 const Carousels = () => {
   const [episodes, setEpisodes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const uriData = useSelector((store) => store.fetchURI.uri);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/tv-shows/fresh-episodes/"
+          "http://localhost:8000/api/tv-shows" + uriData
         );
         setEpisodes(response.data);
       } catch (err) {
@@ -28,7 +30,7 @@ const Carousels = () => {
     };
 
     fetchData();
-  }, []);
+  }, [uriData]);
 
   if (loading) console.log("loading...");
   if (error) console.log("error..", error);
