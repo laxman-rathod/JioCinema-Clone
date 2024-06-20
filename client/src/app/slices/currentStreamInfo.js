@@ -2,17 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const streamInfoSlice = createSlice({
   name: "currentStreamInfo",
-  initialState: { MoviesTitle: "", showsTitle: "", contentType: "" },
+  initialState: {
+    contentType: "",
+    currentStream: "",
+  },
   reducers: {
-    currentMovieInfo: (state, action) => {
-      state.MoviesTitle = action.payload.title;
+    currentStreamInformation: (state, action) => {
+      state.currentStream = action.payload.currentStream;
       state.contentType = action.payload.contentType;
-    },
-    currentTvShowInfo: (state, action) => {
-      state.showsTitle = action.payload.title;
     },
   },
 });
 
-export const { currentMovieInfo, currentTvShowInfo } = streamInfoSlice.actions;
+export const { currentStreamInformation } = streamInfoSlice.actions;
 export default streamInfoSlice.reducer;

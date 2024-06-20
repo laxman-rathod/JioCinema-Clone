@@ -7,23 +7,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { currentTvShowInfo } from "../../../app/slices/currentStreamInfo";
-
+import { useSelector } from "react-redux";
 
 const Carousel = () => {
   const [episodes, setEpisodes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const uriData = useSelector((store) => store.fetchURI.uri);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const handleOnClick = (title) => {
-    dispatch(currentTvShowInfo({ title: title }));
-    navigate("/streaming-details");
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,17 +23,12 @@ const Carousel = () => {
         );
         setEpisodes(response.data);
       } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
+        console.log(err);
       }
     };
 
     fetchData();
   }, [uriData]);
-
-  if (loading) console.log("loading...");
-  if (error) console.log("error..", error);
 
   return (
     <div className="w-full h-[17rem] cursor-pointer">
@@ -70,7 +55,13 @@ const Carousel = () => {
               className="rounded-lg"
             />
             <div
-              onClick={() => handleOnClick(show.title)}
+              onClick={() =>
+                navigate(
+                  `/${show.contentType === "Movie" ? "movies" : "tv-shows"}/${
+                    show.title
+                  }`
+                )
+              }
               className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.07] transition-opacity duration-300 rounded-lg"
             ></div>
           </SwiperSlide>

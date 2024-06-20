@@ -13,7 +13,7 @@ import ContainerHero11 from "../components/home/hero11/ContainerHero11";
 import ContainerHero12 from "../components/home/hero12/ContainerHero12";
 import ContainerHero13 from "../components/home/hero13/ContainerHero13";
 import { useSelector } from "react-redux";
-import Profile from "../pages/Profile";
+import Profile from "../pages/profile/Profile";
 
 const Home = () => {
   const isProfileActive = useSelector((store) => store.jcStates.currentState);

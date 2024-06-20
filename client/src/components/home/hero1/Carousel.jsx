@@ -6,11 +6,11 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./styles1.css";
 import { Navigation } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 
 const Carousel = () => {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,17 +20,12 @@ const Carousel = () => {
         );
         setMovies(response.data);
       } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
+        console.log(err);
       }
     };
 
     fetchData();
   }, []);
-
-  if (loading) console.log("loading...");
-  if (error) console.log("error..", error);
 
   return (
     <div className="w-full h-80">
@@ -54,13 +49,20 @@ const Carousel = () => {
             <img
               src={movie.thumbnail}
               alt={`${movie.title} poster`}
-              className="rounded-2xl  h-full w-full object-cover"
+              className="rounded-2xl cursor-pointer h-full w-full object-cover"
+              onClick={() =>
+                navigate(
+                  `/${movie.contentType === "Movie" ? "movies" : "tv-shows"}/${
+                    movie.title
+                  }`
+                )
+              }
             />
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="swiper-button-prev custom-button-prev"></div>
-      <div className="swiper-button-next custom-button-next"></div>
+      <div className="swiper-button-prev"></div>
+      <div className="swiper-button-next"></div>
     </div>
   );
 };

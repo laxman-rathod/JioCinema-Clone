@@ -8,21 +8,12 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { currentMovieInfo } from "../../../app/slices/currentStreamInfo";
 
 const MoviesCarousel = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const handleOnClick = (title, contentType) => {
-    console.log("You Clicked me..");
-    dispatch(currentMovieInfo({ title: title, contentType: contentType }));
-    navigate("/streaming-details");
-  };
 
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -79,7 +70,13 @@ const MoviesCarousel = () => {
               className="rounded-lg size-full"
             />
             <div
-              onClick={() => handleOnClick(movie.title, movie.contentType)}
+              onClick={() =>
+                navigate(
+                  `/${movie.contentType === "Movie" ? "movies" : "tv-shows"}/${
+                    movie.title
+                  }`
+                )
+              }
               className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.07] transition-opacity duration-300 rounded-lg"
             ></div>
           </SwiperSlide>

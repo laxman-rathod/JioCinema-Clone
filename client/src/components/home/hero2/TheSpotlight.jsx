@@ -1,6 +1,9 @@
 import React from "react";
+// import { useDispatch } from "react-redux";
 
 const TheSpotlight = () => {
+  // const navigate = useNavigate();
+  // navigate(`/${contentType === "Movie" ? "movies" : "tv-shows"}/${title}`)
   return (
     <div className="flex items-center justify-start gap-3">
       <img

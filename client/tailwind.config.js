@@ -42,6 +42,7 @@ export default {
       semiWhite: "rgb(217 214 229)",
 
       // colors
+
       current: "currentColor",
       pink: "#d9008d",
       white: "#ffffff",

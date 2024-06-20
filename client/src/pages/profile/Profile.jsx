@@ -3,7 +3,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { openProfileSettings } from "../app/slices/jcSlice";
+import { openProfileSettings } from "../../app/slices/jcSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();

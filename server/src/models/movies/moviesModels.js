@@ -19,7 +19,7 @@ const createMovies = async () => {
         id: uuidv4(),
         title: items.title,
         ratings: items.rating,
-        genre: items.genre,
+        genres: items.genres,
         contentType: "Movie",
         thumbnail: items.image,
         description: items.description,

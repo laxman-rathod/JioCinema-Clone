@@ -10,9 +10,11 @@ import TVShows from "./routes/TVShows";
 import PageNotFound from "./routes/PageNotFound";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
-import ProfileSettings from "./pages/ProfileSettings";
-import MoviesIntroContainer from "./pages/StreamingPages/MoviesIntroContainer";
-import HeaderNavBar from "./components/header/HeaderNavBar";
+import ProfileSettings from "./pages/profile/ProfileSettings";
+import StreamingInfoContainer from "./pages/StreamingPages/streaming-info/StreamingInfoContainer";
+import Header from "./pages/StreamingPages/header/Header";
+import WatchContainer from "./pages/StreamingPages/streaming-play/WatchContainer";
+import LoadingProgrssBar from "./util/LoadingProgrssBar";
 
 const router = createBrowserRouter([
   {
@@ -64,14 +66,21 @@ const router = createBrowserRouter([
     children: [{ path: "/profile-settings", element: <ProfileSettings /> }],
   },
   {
-    path: "/streaming-details",
+    path: "/:streamType/:title",
     element: (
       <div className="bg-darkBg">
-        <HeaderNavBar />
-        <MoviesIntroContainer />
+        <Header />
+        <Outlet />
         <Footer />
       </div>
     ),
+    children: [
+      {
+        path: "",
+        element: <StreamingInfoContainer />,
+      },
+      { path: "watch", element: <WatchContainer /> },
+    ],
   },
 ]);
 

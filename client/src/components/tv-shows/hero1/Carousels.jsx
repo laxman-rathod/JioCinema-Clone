@@ -6,11 +6,13 @@ import "swiper/css/navigation";
 import "./styles1.css";
 import { Navigation } from "swiper/modules";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Carousel = () => {
   const [tvShows, setTvShows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,6 +57,13 @@ const Carousel = () => {
               src={shows.thumbnail}
               alt={`${shows.title} movie thumbnail`}
               className="rounded-2xl cursor-pointer"
+              onClick={() =>
+                navigate(
+                  `/${shows.contentType === "Movie" ? "movies" : "tv-shows"}/${
+                    shows.title
+                  }`
+                )
+              }
             />
           </SwiperSlide>
         ))}

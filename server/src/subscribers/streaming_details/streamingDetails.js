@@ -1,4 +1,5 @@
 import moviesSchema from "../../schema/movies/moviesSchema.js";
+import tvShowsSchema from "../../schema/tv-shows/tvShowsSchema.js";
 
 const streamMoviesDetails = async (req, res) => {
   try {
@@ -13,7 +14,7 @@ const streamMoviesDetails = async (req, res) => {
 
 const streamTvShowsDetails = async (req, res) => {
   try {
-    const stream = await moviesSchema
+    const stream = await tvShowsSchema
       .findOne({ title: req.params.title })
       .lean();
     if (stream) res.json(stream);

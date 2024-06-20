@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { user_auth } from "../app/slices/userAuth";
 import axios from "axios";
+import { user_auth } from "../../app/slices/userAuth";
 
 const ProfileSettings = () => {
   const user = useSelector((store) => store.userAuth);

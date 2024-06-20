@@ -58,7 +58,7 @@ const getTopRankedMovies = async (req, res) => {
 
 const getRomanticMovies = async (req, res) => {
   try {
-    const movies = await moviesSchema.find({ genre: { $in: "Romance" } });
+    const movies = await moviesSchema.find({ genres: { $in: "Romance" } });
     if (movies.length <= 0) {
       res.status(500).json({ error: "Movie not found!" });
       return;
@@ -71,7 +71,7 @@ const getRomanticMovies = async (req, res) => {
 
 const getDramaMovies = async (req, res) => {
   try {
-    const movies = await moviesSchema.find({ genre: { $in: "Drama" } });
+    const movies = await moviesSchema.find({ genres: { $in: "Drama" } });
     if (movies.length <= 0) {
       res.status(500).json({ error: "Movie not found!" });
       return;
@@ -84,7 +84,7 @@ const getDramaMovies = async (req, res) => {
 
 const getHorrorMovies = async (req, res) => {
   try {
-    const movies = await moviesSchema.find({ genre: { $in: "Horror" } });
+    const movies = await moviesSchema.find({ genres: { $in: "Horror" } });
     if (movies.length <= 0) {
       res.status(500).json({ error: "Movie not found!" });
       return;
@@ -98,7 +98,7 @@ const getHorrorMovies = async (req, res) => {
 const getActionMovies = async (req, res) => {
   try {
     const movies = await moviesSchema.find({
-      genre: { $in: ["Adventure", "Action"] },
+      genres: { $in: ["Adventure", "Action"] },
     });
     if (movies.length <= 0) {
       res.status(500).json({ error: "Movie not found!" });
@@ -113,7 +113,7 @@ const getActionMovies = async (req, res) => {
 const getAnimeMovies = async (req, res) => {
   try {
     const movies = await moviesSchema.find({
-      genre: { $in: "Animation" },
+      genres: { $in: "Animation" },
     });
     if (movies.length <= 0) {
       res.status(500).json({ error: "Movie not found!" });
@@ -128,7 +128,7 @@ const getAnimeMovies = async (req, res) => {
 const getFamilyAndKidsMovies = async (req, res) => {
   try {
     const movies = await moviesSchema.find({
-      genre: { $in: ["Family", "Kids"] },
+      genres: { $in: ["Family", "Kids"] },
     });
     if (movies.length <= 0) {
       res.status(500).json({ error: "Movie not found!" });
@@ -159,7 +159,7 @@ const englishMovies = async (req, res) => {
 const romanticMovies = async (req, res) => {
   try {
     const movies = await moviesSchema
-      .find({ genre: { $in: "Romance" } })
+      .find({ genres: { $in: "Romance" } })
       .lean();
     if (movies.length <= 0) {
       res.status(500).json({ error: "Movie not found!" });
@@ -174,7 +174,7 @@ const romanticMovies = async (req, res) => {
 const comedyMovies = async (req, res) => {
   try {
     const movies = await moviesSchema
-      .find({ genre: { $in: "Comedy" } })
+      .find({ genres: { $in: "Comedy" } })
       .sort({ title: 1 })
       .lean();
     if (movies.length <= 0) {
@@ -191,7 +191,7 @@ const topMovies = async (req, res) => {
   try {
     const movies = await moviesSchema
       .find({
-        genre: { $in: ["Action", "Adventure", "Science Fiction", "Fantasy"] },
+        genres: { $in: ["Action", "Adventure", "Science Fiction", "Fantasy"] },
       })
       .sort({ voteAverage: 1 });
     if (movies.length <= 0) {

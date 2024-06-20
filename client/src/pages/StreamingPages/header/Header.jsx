@@ -4,12 +4,12 @@ import { IoSearchSharp } from "react-icons/io5";
 import { FaMicrophone } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { currentStateFunc } from "../../app/slices/jcSlice";
-import { user_auth } from "../../app/slices/userAuth";
 import axios from "axios";
+import { user_auth } from "../../../app/slices/userAuth";
+import { currentStateFunc } from "../../../app/slices/jcSlice";
 
-const HeaderNavBar = () => {
-  const [isActive, setIsActive] = useState("home");
+const Header = () => {
+  const [isActive, setIsActive] = useState(null);
   const dispatch = useDispatch();
 
   const fetchUsersData = async () => {
@@ -71,7 +71,7 @@ const HeaderNavBar = () => {
             Go Premium
           </div>
         </div>
-        <div className="flex place-items-center gap-6 text-sm font-[900] cursor-pointer">
+        <div className="flex place-items-center gap-6 text-sm font-[900] no-underline cursor-pointer">
           <Link
             to={"/"}
             className={`${
@@ -156,4 +156,4 @@ const HeaderNavBar = () => {
   );
 };
 
-export default HeaderNavBar;
+export default Header;

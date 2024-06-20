@@ -8,11 +8,13 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Carousels = () => {
   const [episodes, setEpisodes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const uriData = useSelector((store) => store.fetchURI.uri);
 
   useEffect(() => {
@@ -59,7 +61,16 @@ const Carousels = () => {
               alt={`${show.title} poster`}
               className="rounded-lg"
             />
-            <div className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.07] transition-opacity duration-300 rounded-lg"></div>
+            <div
+              onClick={() =>
+                navigate(
+                  `/${show.contentType === "Movie" ? "movies" : "tv-shows"}/${
+                    show.title
+                  }`
+                )
+              }
+              className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.07] transition-opacity duration-300 rounded-lg"
+            ></div>
           </SwiperSlide>
         ))}
       </Swiper>

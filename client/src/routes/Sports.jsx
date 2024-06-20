@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "../pages/Profile";
+import Profile from "../pages/profile/Profile";
 import { useSelector } from "react-redux";
 
 const Sports = () => {

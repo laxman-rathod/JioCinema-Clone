@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Movies = () => {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +32,6 @@ const Movies = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -42,6 +43,13 @@ const Movies = () => {
           key={show.id}
           src={show.thumbnail}
           alt={show.title}
+          onClick={() =>
+            navigate(
+              `/${show.contentType === "Movie" ? "movies" : "tv-shows"}/${
+                show.title
+              }`
+            )
+          }
           className="rounded-lg w-full h-full object-cover brightness-95 hover:brightness-110 custome-transition"
         />
       ))}
