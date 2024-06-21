@@ -4,8 +4,6 @@ import { useParams } from "react-router-dom";
 
 const Description = () => {
   const [streamInfo, setStreamInfo] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const { streamType, title } = useParams();
 
   useEffect(() => {
@@ -16,17 +14,12 @@ const Description = () => {
         );
         setStreamInfo(currentStreamData.data);
       } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
+        console.log(err);
       }
     };
 
     fetchData();
   }, [streamType, title]);
-
-  if (loading) console.log("loading...");
-  if (error) console.log("error..");
 
   return (
     <div className="size-full font-poppins text-white px-6">

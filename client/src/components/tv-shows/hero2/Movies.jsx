@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 const Movies = () => {
   const [shows, setShows] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,21 +18,12 @@ const Movies = () => {
           setError("No data found");
         }
       } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+        console.log(err);
       }
     };
 
     fetchData();
   }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   return (
     <div className="pr-6 cursor-pointer w-full h-72">

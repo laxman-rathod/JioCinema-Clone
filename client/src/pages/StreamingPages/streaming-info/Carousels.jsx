@@ -8,31 +8,33 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Carousels = () => {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [Genres, setGenres] = useState();
+  const { streamType, title } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const currentStreamData = await axios.get(
+          `http://localhost:8000/api/${streamType}/${title}`
+        );
+        setGenres(currentStreamData.data.genres[0]);
+
         const response = await axios.get(
-          "http://localhost:8000/api/movies/romantic-movies/"
+          `http://localhost:8000/api/genres-based-contents/${Genres}`
         );
         setMovies(response.data);
       } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
+        console.log(err.message);
       }
     };
 
     fetchData();
-  }, []);
-
-  if (loading) console.log("loading...");
-  if (error) console.log("error..", error);
+  }, [Genres]);
 
   return (
     <div className="mx-6 mt-3">
@@ -52,70 +54,23 @@ const Carousels = () => {
           modules={[Navigation]}
           className="mySwiper"
         >
-          {movies.map((movies) => (
-            <SwiperSlide key={movies.id}>
+          {movies.map((movie) => (
+            <SwiperSlide key={movie.id}>
               <img
-                src={movies.thumbnail}
-                alt={`${movies.title} poster`}
+                src={movie.thumbnail}
+                alt={`${movie.title} poster`}
                 className="rounded-lg"
               />
-              <div className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.08] transition-opacity duration-300 rounded-lg"></div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <div className="w-full h-80 mt-4 cursor-pointer">
-        <Swiper
-          slidesPerView={5}
-          spaceBetween={16}
-          loop={true}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
-          modules={[Navigation]}
-          className="mySwiper"
-        >
-          {movies.map((movies) => (
-            <SwiperSlide key={movies.id}>
-              <img
-                src={movies.thumbnail}
-                alt={`${movies.title} poster`}
-                className="rounded-lg"
-              />
-              <div className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.07] transition-opacity duration-300 rounded-lg"></div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <div className="w-full h-80 mt-4 cursor-pointer">
-        <Swiper
-          slidesPerView={5}
-          spaceBetween={16}
-          loop={true}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
-          modules={[Navigation]}
-          className="mySwiper"
-        >
-          {movies.map((movies) => (
-            <SwiperSlide key={movies.id}>
-              <img
-                src={movies.thumbnail}
-                alt={`${movies.title} poster`}
-                className="rounded-lg"
-              />
-              <div className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.07] transition-opacity duration-300 rounded-lg"></div>
+              <div
+                onClick={() =>
+                  navigate(
+                    `/${
+                      movie.contentType === "Movie" ? "movies" : "tv-shows"
+                    }/${movie.title}`
+                  )
+                }
+                className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.08] transition-opacity duration-300 rounded-lg"
+              ></div>
             </SwiperSlide>
           ))}
         </Swiper>

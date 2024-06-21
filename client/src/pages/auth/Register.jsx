@@ -110,6 +110,14 @@ const Register = () => {
           <span className="underline font-extrabold"> Privacy Policy .</span>
         </h4>
       </div>
+      <div
+        onClick={() => navigate("/login")}
+        className=" cursor-pointer pt-4 text-white2"
+      >
+        <h2 className="font-bold text-sm hover:underline hover:text-pink">
+          Sign In
+        </h2>
+      </div>
     </div>
   );
 };

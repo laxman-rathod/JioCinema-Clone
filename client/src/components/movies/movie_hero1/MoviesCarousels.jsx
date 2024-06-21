@@ -11,8 +11,6 @@ import { useNavigate } from "react-router-dom";
 
 const MoviesCarousels = () => {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,10 +27,8 @@ const MoviesCarousels = () => {
         if (axios.isCancel(err)) {
           console.log("Request canceled", err.message);
         } else {
-          setError(err);
+          console.log(err);
         }
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -42,9 +38,6 @@ const MoviesCarousels = () => {
       source.cancel("Operation canceled by the user.");
     };
   }, []);
-
-  if (loading) console.log("loading...");
-  if (error) console.log("error..", error);
 
   return (
     <div className="w-full h-80">

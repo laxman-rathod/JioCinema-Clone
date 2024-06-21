@@ -4,8 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const Intro = () => {
   const [streamInfo, setStreamInfo] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const { streamType, title } = useParams();
   const navigate = useNavigate();
 
@@ -17,17 +15,12 @@ const Intro = () => {
         );
         setStreamInfo(currentStreamData.data);
       } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
+        console.log(err.message);
       }
     };
 
     fetchData();
   }, [streamType, title]);
-
-  if (loading) console.log("loading...");
-  if (error) console.log("error..");
 
   return (
     <div className="size-full">

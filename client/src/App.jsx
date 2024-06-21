@@ -14,7 +14,7 @@ import ProfileSettings from "./pages/profile/ProfileSettings";
 import StreamingInfoContainer from "./pages/StreamingPages/streaming-info/StreamingInfoContainer";
 import Header from "./pages/StreamingPages/header/Header";
 import WatchContainer from "./pages/StreamingPages/streaming-play/WatchContainer";
-import LoadingProgrssBar from "./util/LoadingProgrssBar";
+import SearchContainer from "./pages/search/SearchContainer";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +42,7 @@ const router = createBrowserRouter([
     path: "/register",
     element: (
       <div className="bg-darkBg">
+        <Header />
         <Register />
       </div>
     ),
@@ -50,6 +51,7 @@ const router = createBrowserRouter([
     path: "/login",
     element: (
       <div className="bg-darkBg">
+        <Header />
         <Login />
       </div>
     ),
@@ -81,6 +83,15 @@ const router = createBrowserRouter([
       },
       { path: "watch", element: <WatchContainer /> },
     ],
+  },
+  {
+    path: "/search",
+    element: (
+      <div className="bg-darkBg">
+        <Header />
+        <SearchContainer />
+      </div>
+    ),
   },
 ]);
 

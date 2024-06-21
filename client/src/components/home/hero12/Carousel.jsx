@@ -55,7 +55,7 @@ const Carousel = () => {
         {images.map((image, ind) => (
           <SwiperSlide key={ind}>
             <img src={image.img} alt={`slide-${ind}`} className="rounded-lg" />
-            <div className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.07] transition-opacity duration-300 rounded-lg"></div>
+            <div className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.10] transition-opacity duration-300 rounded-lg"></div>
           </SwiperSlide>
         ))}
       </Swiper>

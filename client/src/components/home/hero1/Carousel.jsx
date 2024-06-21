@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./styles1.css";
 import { Navigation } from "swiper/modules";
@@ -16,7 +15,7 @@ const Carousel = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/movies/all/"
+          "http://localhost:8000/api/movies/hollywood-movies"
         );
         setMovies(response.data);
       } catch (err) {
@@ -34,9 +33,6 @@ const Carousel = () => {
         centeredSlides={true}
         spaceBetween={10}
         loop={true}
-        pagination={{
-          clickable: true,
-        }}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -45,11 +41,11 @@ const Carousel = () => {
         className="mySwiper"
       >
         {movies.map((movie) => (
-          <SwiperSlide key={movie.id} className="w-full h-full">
+          <SwiperSlide key={movie.id}>
             <img
               src={movie.thumbnail}
               alt={`${movie.title} poster`}
-              className="rounded-2xl cursor-pointer h-full w-full object-cover"
+              className="rounded-2xl cursor-pointer"
               onClick={() =>
                 navigate(
                   `/${movie.contentType === "Movie" ? "movies" : "tv-shows"}/${

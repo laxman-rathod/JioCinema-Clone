@@ -1,21 +1,43 @@
-import React from "react";
-// import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const TheSpotlight = () => {
-  // const navigate = useNavigate();
-  // navigate(`/${contentType === "Movie" ? "movies" : "tv-shows"}/${title}`)
+  const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8000/api/movies/trending-movies"
+        );
+        setMovies(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchMovies();
+  }, []);
+
   return (
     <div className="flex items-center justify-start gap-3">
-      <img
-        src="/assets/the_loard_of_the_rings_image.jpg"
-        alt="movies_name"
-        className="w-full h-[22rem] object-cover rounded-lg cursor-pointer"
-      />
-      <img
-        src="/assets/openhaimer_movie_image_full.jpg"
-        alt="movies_name"
-        className="w-full h-[22rem] object-cover rounded-lg cursor-pointer"
-      />
+      {movies.map((movie) => (
+        <div key={movie.id} className="w-full h-full">
+          <img
+            src={movie.thumbnail}
+            alt={`${movie.title} poster`}
+            className="w-full h-[21rem] object-cover rounded-lg cursor-pointer"
+            onClick={() =>
+              navigate(
+                `/${movie.contentType === "Movie" ? "movies" : "tv-shows"}/${
+                  movie.title
+                }`
+              )
+            }
+          />
+        </div>
+      ))}
     </div>
   );
 };

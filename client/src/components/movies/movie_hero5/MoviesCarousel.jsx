@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles5.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,34 +6,27 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const MoviesCarousel = () => {
-  const images = [
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-    {
-      img: "/assets/openheimer.png",
-    },
-  ];
+  const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/tv-shows/top-hindiShows/"
+        );
+        setMovies(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="w-full h-[17rem] cursor-pointer">
@@ -52,10 +45,23 @@ const MoviesCarousel = () => {
         modules={[Navigation]}
         className="mySwiper"
       >
-        {images.map((image, ind) => (
-          <SwiperSlide key={ind}>
-            <img src={image.img} alt={`slide-${ind}`} className="rounded-lg" />
-            <div className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.07] transition-opacity duration-300 rounded-lg"></div>
+        {movies.map((movie) => (
+          <SwiperSlide key={movie.id}>
+            <img
+              src={movie.thumbnail}
+              alt={`${movie.title} poster`}
+              className="rounded-lg"
+            />
+            <div
+              onClick={() =>
+                navigate(
+                  `/${movie.contentType === "Movie" ? "movies" : "tv-shows"}/${
+                    movie.title
+                  }`
+                )
+              }
+              className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.10] transition-opacity duration-300 rounded-lg"
+            ></div>
           </SwiperSlide>
         ))}
       </Swiper>

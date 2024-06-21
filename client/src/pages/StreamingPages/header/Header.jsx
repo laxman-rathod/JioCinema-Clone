@@ -1,16 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaMicrophone } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { user_auth } from "../../../app/slices/userAuth";
 import { currentStateFunc } from "../../../app/slices/jcSlice";
+import { inputValueChanged } from "../../../app/slices/searchData";
 
 const Header = () => {
   const [isActive, setIsActive] = useState(null);
   const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState("");
+  const [hasChanged, setHasChanged] = useState(false);
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (hasChanged) {
+  //     navigate("/search");
+  //   }
+  // }, [hasChanged]);
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+    dispatch(inputValueChanged({ inputValue: event.target.value }));
+
+    // if (!hasChanged) {
+    //   setHasChanged(true);
+    // }
+  };
 
   const fetchUsersData = async () => {
     try {
@@ -133,6 +152,8 @@ const Header = () => {
           </div>
           <div className="flex place-items-center">
             <input
+              value={inputValue}
+              onChange={handleChange}
               type="text"
               placeholder="Movies, Shows and more"
               className="ml-2 mr-4 bg-transparent font-poppins text-white text-sm outline-none placeholder:text-searchText placeholder:font-extrabold placeholder:text-sm"

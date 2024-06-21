@@ -8,6 +8,8 @@ body {
   height: 100%;
 }
 
+/* carousel buttons */
+
 /* hover and dropdown box */
 .more-options:hover .down-arrow {
   transform: rotate(180deg);

@@ -6,6 +6,7 @@ const ContainerHero3 = () => {
   return (
     <div className="ml-6 mt-8">
       <Heading />
+      
       <HotRightNow />
     </div>
   );

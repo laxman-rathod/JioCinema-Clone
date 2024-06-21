@@ -23,6 +23,8 @@ const Movies = () => {
       <ContainerHero1 />
       <ContainerHero2 />
       <ContainerHero3 />
+      <ContainerHero11 />
+      <ContainerHero14 />
       <ContainerHero4 />
       <ContainerHero5 />
       <ContainerHero6 />
@@ -30,10 +32,8 @@ const Movies = () => {
       <ContainerHero8 />
       <ContainerHero9 />
       <ContainerHero10 />
-      <ContainerHero11 />
       <ContainerHero12 />
       <ContainerHero13 />
-      <ContainerHero14 />
     </>
   );
 };

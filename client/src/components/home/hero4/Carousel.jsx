@@ -62,7 +62,7 @@ const Carousel = () => {
                   }`
                 )
               }
-              className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.07] transition-opacity duration-300 rounded-lg"
+              className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.10] transition-opacity duration-300 rounded-lg"
             ></div>
           </SwiperSlide>
         ))}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { GoArrowLeft, GoArrowRight } from "react-icons/go";
+import { GoArrowLeft } from "react-icons/go";
 
 const Login = () => {
   const [formData, setFormData] = useState({ mobileNumber: "", password: "" });
@@ -79,15 +79,13 @@ const Login = () => {
         <h4 className="ml-3">
           By continuing you agree to our
           <span className="underline font-extrabold cursor-pointer">
-            {" "}
             Terms of Use
-          </span>{" "}
+          </span>
           and
         </h4>
         <h4 className="leading-6">
           acknowledge that you have read our
           <span className="underline font-extrabold cursor-pointer">
-            {" "}
             Privacy Policy .
           </span>
         </h4>

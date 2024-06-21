@@ -10,8 +10,6 @@ import { useNavigate } from "react-router-dom";
 
 const Carousel = () => {
   const [tvShows, setTvShows] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,17 +20,12 @@ const Carousel = () => {
         );
         setTvShows(response.data);
       } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
+        console.log(err);
       }
     };
 
     fetchData();
   }, []);
-
-  if (loading) console.log("loading...");
-  if (error) console.log("error..", error);
 
   return (
     <div className="w-full h-80">

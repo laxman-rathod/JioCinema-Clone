@@ -11,8 +11,6 @@ import { useNavigate } from "react-router-dom";
 
 const Carousels = () => {
   const [tvShows, setTvShows] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,17 +21,12 @@ const Carousels = () => {
         );
         setTvShows(response.data);
       } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
+        console.log(err);
       }
     };
 
     fetchData();
   }, []);
-
-  if (loading) console.log("loading...");
-  if (error) console.log("error..", error);
 
   return (
     <div className="w-full h-[17rem] cursor-pointer">
@@ -67,7 +60,7 @@ const Carousels = () => {
                   }`
                 )
               }
-              className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.07] transition-opacity duration-300 rounded-lg"
+              className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.10] transition-opacity duration-300 rounded-lg"
             ></div>
           </SwiperSlide>
         ))}
