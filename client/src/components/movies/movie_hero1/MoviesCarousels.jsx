@@ -8,36 +8,55 @@ import "swiper/css/navigation";
 import "./styles1.css";
 import { Navigation } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const MoviesCarousels = () => {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
 
+  const res = useSelector((store) => store.movieSuggestions);
+
+  const fetchGenData = async (source) => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/movies/sifi-fantasy/",
+        { cancelToken: source.token }
+      );
+      setMovies(response.data);
+    } catch (err) {
+      if (axios.isCancel(err)) {
+        console.log(err.message);
+      } else {
+        console.log(err);
+      }
+    }
+  };
+
+  const fetchSuggData = async (source) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/api/movies/search/${res.keywords}/`,
+        { cancelToken: source.token }
+      );
+      setMovies(response.data);
+    } catch (err) {
+      if (axios.isCancel(err)) {
+        console.log(err.message);
+      } else {
+        console.log(err);
+      }
+    }
+  };
+
   useEffect(() => {
     const source = axios.CancelToken.source();
 
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8000/api/movies/sifi-fantasy/",
-          { cancelToken: source.token }
-        );
-        setMovies(response.data);
-      } catch (err) {
-        if (axios.isCancel(err)) {
-          console.log("Request canceled", err.message);
-        } else {
-          console.log(err);
-        }
-      }
-    };
-
-    fetchData();
+    res.isGenrelContents ? fetchGenData(source) : fetchSuggData(source);
 
     return () => {
       source.cancel("Operation canceled by the user.");
     };
-  }, []);
+  }, [res.isGenrelContents]);
 
   return (
     <div className="w-full h-80">

@@ -7,25 +7,39 @@ import "./styles1.css";
 import { Navigation } from "swiper/modules";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Carousel = () => {
   const [tvShows, setTvShows] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8000/api/tv-shows/toprated-originals/"
-        );
-        setTvShows(response.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+  const res = useSelector((store) => store.movieSuggestions);
 
-    fetchData();
-  }, []);
+  const fetchGenData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/tv-shows/toprated-originals/"
+      );
+      setTvShows(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchSuggData = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/api/tv-shows/search/${res.keywords}/`
+      );
+      setTvShows(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    res.isGenrelContents ? fetchGenData() : fetchSuggData();
+  }, [res.isGenrelContents, res.keywords]);
 
   return (
     <div className="w-full h-80">

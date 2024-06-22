@@ -1,5 +1,7 @@
+// App.jsx
+
 import React from "react";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 import Headers from "./components/header/Headers";
 import Footer from "./components/footer/Footer";
@@ -15,6 +17,7 @@ import StreamingInfoContainer from "./pages/StreamingPages/streaming-info/Stream
 import Header from "./pages/StreamingPages/header/Header";
 import WatchContainer from "./pages/StreamingPages/streaming-play/WatchContainer";
 import SearchContainer from "./pages/search/SearchContainer";
+import ResetWrapper from "./util/ResetWrapper";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +39,8 @@ const router = createBrowserRouter([
       { path: "/sports", element: <Sports /> },
       { path: "/movies", element: <Movies /> },
       { path: "/tv-shows", element: <TVShows /> },
+
+      // {path: `/${keywords}`, element: <></>}
     ],
   },
   {
@@ -96,7 +101,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider router={router}>
+      <ResetWrapper />
+    </RouterProvider>
+  );
 };
 
 export default App;

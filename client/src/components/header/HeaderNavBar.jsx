@@ -1,21 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaMicrophone } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { currentStateFunc } from "../../app/slices/jcSlice";
 import { user_auth } from "../../app/slices/userAuth";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { inputValueChanged } from "../../app/slices/searchData";
+import { setCurrentTab } from "../../app/slices/tabControls";
 
 const HeaderNavBar = () => {
-  const [isActive, setIsActive] = useState("home");
-  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   const [hasChanged, setHasChanged] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const currentTab = useSelector((store) => store.tabControls.currentTab);
 
   useEffect(() => {
     if (hasChanged) {
@@ -67,7 +68,7 @@ const HeaderNavBar = () => {
   };
 
   const handleOnClick = (name) => {
-    setIsActive(name);
+    dispatch(setCurrentTab({ tab: name }));
   };
 
   const handleProfileClick = () => {
@@ -84,6 +85,7 @@ const HeaderNavBar = () => {
               src="/assets/jc_logo.svg"
               className="size-30"
               alt="JioCinema logo"
+              onClick={() => handleOnClick("home")}
             />
           </Link>
           <div className="flex place-items-center gap-1 py-[0.3rem] px-[0.7rem] text-[.770rem] font-[900] text-goldenC border-2 border-goldenC rounded-full">
@@ -95,7 +97,7 @@ const HeaderNavBar = () => {
           <Link
             to={"/"}
             className={`${
-              isActive === "home" &&
+              currentTab === "home" &&
               "border-b-4 rounded-b-sm border-pink text-white"
             } text-gray transition ease-in-out duration-150 hover:text-white`}
             onClick={() => handleOnClick("home")}
@@ -105,7 +107,7 @@ const HeaderNavBar = () => {
           <Link
             to={"/sports"}
             className={`${
-              isActive === "sports" &&
+              currentTab === "sports" &&
               "border-b-4 rounded-b-sm border-pink  text-white"
             } text-gray transition ease-in-out duration-150 hover:text-white`}
             onClick={() => handleOnClick("sports")}
@@ -115,7 +117,7 @@ const HeaderNavBar = () => {
           <Link
             to={"/movies"}
             className={`${
-              isActive === "movies" &&
+              currentTab === "movies" &&
               "border-b-4 rounded-b-sm border-pink  text-white"
             } text-gray transition ease-in-out duration-150 hover:text-white`}
             onClick={() => handleOnClick("movies")}
@@ -126,7 +128,7 @@ const HeaderNavBar = () => {
           <Link
             to={"/tv-shows"}
             className={`${
-              isActive === "tvshows" &&
+              currentTab === "tvshows" &&
               "border-b-4 rounded-b-sm border-pink  text-white"
             } text-gray transition ease-in-out duration-150 hover:text-white`}
             onClick={() => handleOnClick("tvshows")}
@@ -134,11 +136,9 @@ const HeaderNavBar = () => {
             TV Shows
           </Link>
           <div
-            className={`${
-              isActive === "more" &&
-              "border-b-4 rounded-b-sm border-pink  text-white"
-            } more-options flex place-items-center gap-2 text-gray transition ease-in-out duration-150 hover:text-white`}
-            onClick={() => handleOnClick("more")}
+            className={
+              "more-options flex place-items-center gap-2 text-gray transition ease-in-out duration-150 hover:text-white"
+            }
           >
             More
             <FaAngleDown className="down-arrow transition ease-in-out delay-75 duration-300" />

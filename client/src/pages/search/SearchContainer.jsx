@@ -5,7 +5,7 @@ import SearchInShows from "./SearchInShows";
 
 const SearchContainer = () => {
   return (
-    <div className="w-full h-full pl-6 pt-8">
+    <div className="w-full h-full pl-6 pt-8 pb-16">
       <TopResults />
       <SearchInMovies />
       <SearchInShows />

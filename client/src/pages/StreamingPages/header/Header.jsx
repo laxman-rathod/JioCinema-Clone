@@ -133,11 +133,9 @@ const Header = () => {
             TV Shows
           </Link>
           <div
-            className={`${
-              isActive === "more" &&
-              "border-b-4 rounded-b-sm border-pink  text-white"
-            } more-options flex place-items-center gap-2 text-gray transition ease-in-out duration-150 hover:text-white`}
-            onClick={() => handleOnClick("more")}
+            className={
+              "more-options flex place-items-center gap-2 text-gray transition ease-in-out duration-150 hover:text-white"
+            }
           >
             More
             <FaAngleDown className="down-arrow transition ease-in-out delay-75 duration-300" />

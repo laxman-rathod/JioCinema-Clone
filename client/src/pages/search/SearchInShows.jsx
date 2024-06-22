@@ -47,7 +47,7 @@ const SearchInShows = () => {
     <>
       {inputData ? (
         <div className="w-full cursor-pointer font-poppins">
-          <h1 className="text-white font-extrabold text-xl mb-8">
+          <h1 className="text-white font-extrabold text-xl mb-8 mt-8">
             "{inputData}" In Shows
           </h1>
           <div className="h-[11rem]">

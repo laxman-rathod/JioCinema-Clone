@@ -13,6 +13,7 @@ const searchTVShowsByTitle = async (req, res) => {
             { title: { $regex: regex } },
             { description: { $regex: regex } },
             { tagLine: { $regex: regex } },
+            { genres: { $regex: regex } },
           ],
         })
         .lean();

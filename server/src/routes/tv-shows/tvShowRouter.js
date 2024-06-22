@@ -4,6 +4,7 @@ import {
   hindiFreshEpisodes,
   hindiShows,
   hotShows,
+  keywordBasedShows,
   popularThrillersShows,
   romanticShows,
   top10Shows,
@@ -26,5 +27,7 @@ router.get("/top10-shows", top10Shows);
 // streaming tv shows details
 router.get("/:title", streamTvShowsDetails);
 router.post("/:search", searchTVShowsByTitle);
+
+router.post("/search/:keywords", keywordBasedShows);
 
 export default router;

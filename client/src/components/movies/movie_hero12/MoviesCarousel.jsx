@@ -25,7 +25,7 @@ const MoviesCarousel = () => {
         setMovies(response.data);
       } catch (err) {
         if (axios.isCancel(err)) {
-          console.log("Request canceled", err.message);
+          console.log(err.message);
         } else {
           console.log(err);
         }

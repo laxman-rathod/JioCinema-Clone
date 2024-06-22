@@ -130,6 +130,36 @@ const top10Shows = async (req, res) => {
   }
 };
 
+const keywordBasedShows = async (req, res) => {
+  try {
+    // 1. Input Validation & Sanitization:
+    let genres = req.params.keywords;
+    if (!genres) {
+      return res.status(400).json({ message: "Genres parameter is required." });
+    }
+
+    // Assuming genres is a comma-separated string, split and sanitize:
+    genres = genres.split(",").map((genre) => genre.trim());
+
+    // 2. Query and Response:
+    const streamData = await tvShowsSchema
+      .find({ genres: { $in: genres } }) // Use sanitized 'genres'
+      .lean();
+
+    if (streamData.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No movies found for the specified genres." });
+    }
+
+    res.status(200).json(streamData);
+  } catch (error) {
+    // 3. Improved Error Handling:
+    console.error("Error fetching movies by genre:", error); // Log the error
+    res.status(500).json({ message: "Internal server error." });
+  }
+};
+
 export {
   getAllShows,
   topRatedShowsHindi,
@@ -140,4 +170,5 @@ export {
   popularThrillersShows,
   hindiShows,
   top10Shows,
+  keywordBasedShows,
 };

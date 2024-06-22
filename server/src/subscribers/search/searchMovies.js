@@ -11,12 +11,12 @@ const searchMoviesByTitle = async (req, res) => {
         .find({
           $or: [
             { title: { $regex: regex } },
+            { genres: { $regex: regex } },
             { description: { $regex: regex } },
             { tagLine: { $regex: regex } },
           ],
         })
         .lean();
-
       res.status(200).json(searchMovies);
     } else {
       res.status(400).json({ error: "Search title is required" });

@@ -25,7 +25,7 @@ const MoviesCarousel = () => {
         setMovies(response.data);
       } catch (err) {
         if (axios.isCancel(err)) {
-          console.log("Request canceled", err.message);
+          console.log(err.message);
         } else {
           console.log(err);
         }
@@ -66,9 +66,9 @@ const MoviesCarousel = () => {
             <div
               onClick={() =>
                 navigate(
-                  `/${movie.contentType === "Movie" ? "movies" : "tv-shows"}/${
-                    movie.title
-                  }`
+                  `/${
+                    movie.contentType === "Movie" ? "movies" : "tv-shows"
+                  }/${encodeURIComponent(movie.title)}`
                 )
               }
               className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.10] transition-opacity duration-300 rounded-lg"
@@ -76,8 +76,6 @@ const MoviesCarousel = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="swiper-button-prev"></div>
-      <div className="swiper-button-next"></div>
     </div>
   );
 };

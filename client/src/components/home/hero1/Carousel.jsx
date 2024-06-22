@@ -6,13 +6,25 @@ import "swiper/css/navigation";
 import "./styles1.css";
 import { Navigation } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Carousel = () => {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
 
+  let isGenrel = null;
+  let keywords = null;
+
+  const res = useSelector((store) => store.movieSuggestions);
+  isGenrel = res.isGenrelContents;
+  keywords = res.keywords;
+
+  console.log("Hey..");
+  console.log(isGenrel);
+  console.log(keywords);
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchGenData = async () => {
       try {
         const response = await axios.get(
           "http://localhost:8000/api/movies/hollywood-movies"
@@ -23,7 +35,7 @@ const Carousel = () => {
       }
     };
 
-    fetchData();
+    fetchGenData();
   }, []);
 
   return (

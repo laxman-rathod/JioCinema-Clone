@@ -14,6 +14,7 @@ import {
   getsifiAndFantasyMovies,
   hotMovies,
   inTheSpotLight,
+  keywordBasedMovies,
   superheroMovies,
   topHollywoodMovies,
   topMovies,
@@ -50,5 +51,8 @@ router.get("/superhero-movies", superheroMovies);
 // streaming movies details
 router.get("/:title", streamMoviesDetails);
 router.post("/:search", searchMoviesByTitle);
+
+// keyword based movies serach
+router.post("/search/:keywords", keywordBasedMovies); 
 
 export default router;

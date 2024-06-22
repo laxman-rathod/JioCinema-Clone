@@ -22,7 +22,7 @@ const Carousels = () => {
         const currentStreamData = await axios.get(
           `http://localhost:8000/api/${streamType}/${title}`
         );
-        setGenres(currentStreamData.data.genres[0]);
+        setGenres(currentStreamData.data.genres);
 
         const response = await axios.get(
           `http://localhost:8000/api/genres-based-contents/${Genres}`
