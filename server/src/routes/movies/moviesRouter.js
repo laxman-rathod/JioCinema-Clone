@@ -12,10 +12,17 @@ import {
   getTopRankedMovies,
   getTopRatedMovies,
   getsifiAndFantasyMovies,
+  hotMovies,
+  inTheSpotLight,
+  superheroMovies,
+  topHollywoodMovies,
   topMovies,
+  trendingHollywoodMovies,
+  wizerdingWorld,
 } from "../../subscribers/movies/moviesHandle.js";
 import { romanticShows } from "../../subscribers/tv-shows/tvshowsHandle.js";
 import { streamMoviesDetails } from "../../subscribers/streaming_details/streamingDetails.js";
+import { searchMoviesByTitle } from "../../subscribers/search/searchMovies.js";
 
 const router = express.Router();
 
@@ -33,8 +40,15 @@ router.get("/hollywood-in-hindi", englishMovies);
 router.get("/romantic-movies", romanticShows);
 router.get("/comedy-movies", comedyMovies);
 router.get("/top-movies", topMovies);
+router.get("/trending-movies", inTheSpotLight);
+router.get("/hot-movies", hotMovies);
+router.get("/hollywood-movies", topHollywoodMovies);
+router.get("/wizerding-world", wizerdingWorld);
+router.get("/hollywood-trending", trendingHollywoodMovies);
+router.get("/superhero-movies", superheroMovies);
 
 // streaming movies details
 router.get("/:title", streamMoviesDetails);
+router.post("/:search", searchMoviesByTitle);
 
 export default router;

@@ -10,6 +10,7 @@ import {
   topRatedShowsHindi,
 } from "../../subscribers/tv-shows/tvshowsHandle.js";
 import { streamTvShowsDetails } from "../../subscribers/streaming_details/streamingDetails.js";
+import { searchTVShowsByTitle } from "../../subscribers/search/searchTVShows.js";
 
 const router = express.Router();
 
@@ -24,5 +25,6 @@ router.get("/top10-shows", top10Shows);
 
 // streaming tv shows details
 router.get("/:title", streamTvShowsDetails);
+router.post("/:search", searchTVShowsByTitle);
 
 export default router;

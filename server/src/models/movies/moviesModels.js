@@ -5,26 +5,23 @@ import axios from "axios";
 const createMovies = async () => {
   const options = {
     method: "GET",
-    url: "https://imdb-top-100-movies.p.rapidapi.com/",
-    headers: {
-      "X-RapidAPI-Key": "a402d87d12msha64fcd9bd1c6fbfp134b74jsnd71eb2fd6ee8",
-      "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com",
-    },
+    url: "https://api.potterdb.com/v1/movies",
   };
   try {
     const res = await axios.request(options);
-    const data = res.data;
+    const data = res.data.data;
     for (const items of data) {
       const movies = new moviesSchemas({
         id: uuidv4(),
-        title: items.title,
-        ratings: items.rating,
-        genres: items.genres,
+        title: items.attributes.title,
+        ratings: "8.8",
+        genres: ["Fantasy", "Mystery", "Adventure", "Sceience Fiction"],
         contentType: "Movie",
-        thumbnail: items.image,
-        description: items.description,
-        rank: items.rank,
-        releaseDate: items.year,
+        thumbnail: items.attributes.poster,
+        description: items.attributes.summary,
+        rank: 87,
+        releaseDate: items.attributes.release_date,
+        runtime: items.attributes.running_time,
       });
       await movies.save();
     }

@@ -10,7 +10,7 @@ const searchData = async (req, res) => {
     const { query } = req.query;
     const response = await youtube.search.list({
       part: "snippet",
-      q: query,
+      q: query + "official trailer",
       maxResults: 3,
     });
     res.json(response.data.items);

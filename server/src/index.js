@@ -10,6 +10,7 @@ import moviesRouter from "./routes/movies/moviesRouter.js";
 import usersRouter from "./routes/users_auth/usersRouter.js";
 import tvShowRouter from "./routes/tv-shows/tvShowRouter.js";
 import { searchData } from "./api/youtubeDataAPI.js";
+import genresRouter from "./routes/genres_based_content/genresRouter.js";
 
 // dot env variables configuration
 dotenv.config();
@@ -37,6 +38,7 @@ app.use(express.static("public"));
 app.use("/api/movies", moviesRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/tv-shows", tvShowRouter);
+app.use("/api/genres-based-contents", genresRouter);
 
 connectToDB(connUrl);
 // createMovies();
