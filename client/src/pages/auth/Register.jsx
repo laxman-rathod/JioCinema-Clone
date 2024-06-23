@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { GoArrowLeft } from "react-icons/go";
 
 const Register = () => {
@@ -25,18 +25,16 @@ const Register = () => {
       const response = await axios.post(
         "https://jiocinema-dbbw.onrender.com/api/users/register",
         formData,
-        { withCredentials: true } // Adding credentials
+        { withCredentials: true }
       );
       if (response.data.success) {
-        localStorage.setItem("token", response.data.token); // there's no need
-        alert("Registration successful!");
-        navigate("/");
+        alert("Registration successful! You can now log in.");
       } else {
-        alert("Login failed");
+        alert(response.data.message || "Registration failed");
       }
     } catch (error) {
-      console.error("There was an error signing in!", error);
-      alert("Sign Up failed");
+      console.error("There was an error registering:", error);
+      alert("Registration failed. Please try again later.");
     }
   };
 
@@ -103,20 +101,28 @@ const Register = () => {
       <div className="text-sm leading-8 mt-3 pl-3 text-gray">
         <h4 className="ml-3">
           By continuing you agree to our
-          <span className="underline font-extrabold"> Terms of Use</span> and
+          <Link to="/terms">
+            <span className="underline font-extrabold"> Terms of Use</span>
+          </Link>{" "}
+          and
         </h4>
         <h4 className="leading-6">
           acknowledge that you have read our
-          <span className="underline font-extrabold"> Privacy Policy .</span>
+          <Link to="/privacy">
+            <span className="underline font-extrabold"> Privacy Policy .</span>
+          </Link>
         </h4>
       </div>
-      <div
-        onClick={() => navigate("/login")}
-        className=" cursor-pointer pt-4 text-white2"
-      >
-        <h2 className="font-bold text-sm hover:underline hover:text-pink">
-          Sign In
-        </h2>
+      <div className="pt-4 text-white2">
+        <p className="text-sm">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="font-bold text-sm hover:underline hover:text-pink"
+          >
+            Sign In
+          </Link>
+        </p>
       </div>
     </div>
   );

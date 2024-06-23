@@ -1,5 +1,3 @@
-// App.jsx
-
 import React from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -39,8 +37,6 @@ const router = createBrowserRouter([
       { path: "/sports", element: <Sports /> },
       { path: "/movies", element: <Movies /> },
       { path: "/tv-shows", element: <TVShows /> },
-
-      // {path: `/${keywords}`, element: <></>}
     ],
   },
   {

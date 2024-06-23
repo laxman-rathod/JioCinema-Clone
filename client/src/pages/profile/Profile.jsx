@@ -1,34 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { openProfileSettings } from "../../app/slices/jcSlice";
+import { clearUserAuth } from "../../app/slices/userAuth";
+
+const API_BASE_URL = "https://jiocinema-dbbw.onrender.com/api";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.userAuth);
+
   const handleLogout = async () => {
     try {
       const response = await axios.post(
-        "https://jiocinema-dbbw.onrender.com/api/users/logout",
+        `${API_BASE_URL}/users/logout`, // Use base URL
         {},
         { withCredentials: true }
       );
       if (response.data.success) {
-        alert("Logout successfull.");
+        dispatch(clearUserAuth());
+        alert("Logout successful.");
         navigate("/");
       } else {
-        alert("Error");
+        alert("Error during logout.");
       }
     } catch (error) {
       console.error("Unable to logout. Please try again!", error);
-      alert("Loggout failed");
+      alert("Logout failed.");
+    } finally {
     }
-
-    window.location.reload();
   };
+
   return (
     <div>
       <div className="w-[30%] h-full fixed right-0 top-[4.5rem] z-50 px-4  pt-16 pb-4 bg-darkBg font-poppins">
@@ -81,7 +85,6 @@ const Profile = () => {
             </button>
           </div>
         )}
-        {/* <ProfileSettings /> */}
 
         <div className="text-white absolute bottom-2 right-12 z-10">
           <h4 className="text-[0.70rem] font-extrabold border-b w-fit cursor-pointer">

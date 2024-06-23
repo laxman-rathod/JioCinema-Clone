@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-// import "./styles7.css";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
@@ -22,7 +20,10 @@ const Carousels = () => {
         const currentStreamData = await axios.get(
           `https://jiocinema-dbbw.onrender.com/api/${streamType}/${title}`
         );
-        setGenres(currentStreamData.data.genres);
+
+        if (currentStreamData.data.genres !== Genres) {
+          setGenres(currentStreamData.data.genres);
+        }
 
         const response = await axios.get(
           `https://jiocinema-dbbw.onrender.com/api/genres-based-contents/${Genres}`

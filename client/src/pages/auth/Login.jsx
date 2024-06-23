@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { GoArrowLeft } from "react-icons/go";
 
@@ -14,6 +14,7 @@ const Login = () => {
   };
 
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -22,16 +23,15 @@ const Login = () => {
         formData,
         { withCredentials: true }
       );
+
       if (response.data.success) {
-        localStorage.setItem("token", response.data.token); // there's no need
         alert("Login successful!.");
         navigate("/");
       } else {
-        alert("Login failed");
+        console.log(response.data.message);
       }
     } catch (error) {
-      console.error("There was an error loggin in!", error);
-      alert("Login failed");
+      console.error("There was an error logging in!", error);
     }
   };
 
@@ -90,14 +90,11 @@ const Login = () => {
           </span>
         </h4>
       </div>
-      <div
-        onClick={() => navigate("/register")}
-        className=" cursor-pointer pt-4 text-white2"
-      >
+      <Link to="/register" className="cursor-pointer pt-4 text-white2">
         <h2 className="font-bold text-sm hover:underline hover:text-pink">
           Sign Up
         </h2>
-      </div>
+      </Link>
     </div>
   );
 };
