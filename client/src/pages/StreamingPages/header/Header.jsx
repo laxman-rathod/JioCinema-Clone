@@ -34,7 +34,7 @@ const Header = () => {
   const fetchUsersData = async () => {
     try {
       const res = await axios.get(
-        "http://jiocinema-phi.vercel.app/api/users/profile",
+        "https://jiocinema-dbbw.onrender.com/api/users/profile",
         {
           withCredentials: true,
         }

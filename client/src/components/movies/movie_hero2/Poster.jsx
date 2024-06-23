@@ -10,7 +10,7 @@ const Poster = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://jiocinema-phi.vercel.app/api/movies/hot-movies/"
+          "https://jiocinema-dbbw.onrender.com/api/movies/hot-movies/"
         );
         setMovie(res.data);
       } catch (error) {

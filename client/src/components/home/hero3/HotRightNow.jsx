@@ -17,7 +17,7 @@ const HotRightNow = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://jiocinema-phi.vercel.app/api/tv-shows/toprated-originals"
+          "https://jiocinema-dbbw.onrender.com/api/tv-shows/toprated-originals"
         );
         setShows(res.data);
       } catch (error) {

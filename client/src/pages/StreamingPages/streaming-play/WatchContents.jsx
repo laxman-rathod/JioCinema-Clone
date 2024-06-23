@@ -19,7 +19,7 @@ const WatchContents = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://jiocinema-phi.vercel.app/search",
+          "https://jiocinema-dbbw.onrender.com/search",
           {
             params: {
               query: title,

@@ -10,7 +10,7 @@ const TheSpotlight = () => {
     const fetchMovies = async () => {
       try {
         const res = await axios.get(
-          "http://jiocinema-phi.vercel.app/api/movies/trending-movies"
+          "https://jiocinema-dbbw.onrender.com/api/movies/trending-movies"
         );
         setMovies(res.data);
       } catch (error) {

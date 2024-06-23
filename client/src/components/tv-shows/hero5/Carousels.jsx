@@ -17,7 +17,7 @@ const Carousels = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://jiocinema-phi.vercel.app/api/movies/anime/"
+          "https://jiocinema-dbbw.onrender.com/api/movies/anime/"
         );
         setAnimes(response.data);
       } catch (err) {

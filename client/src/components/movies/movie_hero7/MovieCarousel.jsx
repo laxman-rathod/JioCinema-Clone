@@ -18,7 +18,7 @@ const MoviesCarousel = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://jiocinema-phi.vercel.app/api/movies/wizerding-world",
+          "https://jiocinema-dbbw.onrender.com/api/movies/wizerding-world",
           { cancelToken: source.token }
         );
         setMovies(response.data);

@@ -18,7 +18,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://jiocinema-phi.vercel.app/api/users/login",
+        "https://jiocinema-dbbw.onrender.com/api/users/login",
         formData,
         { withCredentials: true }
       );
