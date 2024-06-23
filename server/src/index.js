@@ -24,7 +24,7 @@ const app = express();
 app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://jiocinema-clone-two.vercel.app/"
+    "https://jiocinema-clone-two.vercel.app"
   ); // Allow your frontend origin
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE"); // Allow essential methods
   res.header(
@@ -35,15 +35,6 @@ app.use((req, res, next) => {
 
   next();
 });
-
-// client configuration options
-// const corsOptions = {
-//   origin: "https://jiocinema-clone-two.vercel.app/",
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-//   allowedHeaders:
-//     "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-//   credentials: true,
-// };
 
 // Middlewares
 app.use(express.json());
