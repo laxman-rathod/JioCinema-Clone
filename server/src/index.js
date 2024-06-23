@@ -20,20 +20,36 @@ const connUrl = process.env.MONGO_URL;
 
 const app = express();
 
+// Correct CORS Configuration
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://jiocinema-clone-two.vercel.app/"
+  ); // Allow your frontend origin
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE"); // Allow essential methods
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.header("Access-Control-Allow-Credentials", "true"); // If using cookies
+
+  next();
+});
+
 // client configuration options
-const corsOptions = {
-  origin: "https://jiocinema-clone-two.vercel.app/",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders:
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: "https://jiocinema-clone-two.vercel.app/",
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   allowedHeaders:
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+//   credentials: true,
+// };
 
 // Middlewares
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.static("public"));
 
 // middleware routes
