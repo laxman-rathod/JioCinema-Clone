@@ -22,7 +22,7 @@ const app = express();
 
 // client configuration options
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "jiocinema-clone-two.vercel.app",
   credentials: true,
 };
 
