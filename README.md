@@ -64,6 +64,10 @@ This web-app clones the features of JioCinema, a popular streaming platform. The
 - Vercel
 - Netlify
 
+**Quick Demo**
+
+Check out the quick [demo here](https://jiocinema-clone-two.vercel.app)
+
 ## Getting Started 🛠️
 
 **Prerequisites:**
@@ -81,7 +85,8 @@ This web-app clones the features of JioCinema, a popular streaming platform. The
 
 2. **Navigate to the project directory:**
 
-   ```cd JioCinema
+   ```bash
+   cd JioCinema
 
    ```
 
