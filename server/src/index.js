@@ -15,9 +15,8 @@ import genresRouter from "./routes/genres_based_content/genresRouter.js";
 // dot env variables configuration
 dotenv.config();
 
-const PORT = process.env.PORT || 8000;
-const connUrl =
-  process.env.CONNECTIONURL || "mongodb://localhost:27017/JioCinemaDB";
+const PORT = process.env.PORT;
+const connUrl = process.env.MONGO_URL;
 
 const app = express();
 
