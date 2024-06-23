@@ -18,7 +18,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/users/login",
+        "http://jiocinema-phi.vercel.app
+/api/users/login",
         formData,
         { withCredentials: true }
       );

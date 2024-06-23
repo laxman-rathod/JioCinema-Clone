@@ -16,7 +16,8 @@ const SearchInShows = () => {
       const fetchData = async () => {
         try {
           const moviesRes = await axios.post(
-            `http://localhost:8000/api/tv-shows/${inputData}`
+            `http://jiocinema-phi.vercel.app
+/api/tv-shows/${inputData}`
           );
           if (moviesRes.data) {
             setMovies(moviesRes.data);
@@ -30,7 +31,8 @@ const SearchInShows = () => {
       const fetchMovies = async () => {
         try {
           const moviesRes = await axios.get(
-            "http://localhost:8000/api/tv-shows/toprated-originals/"
+            "http://jiocinema-phi.vercel.app
+/api/tv-shows/toprated-originals/"
           );
           if (moviesRes.data) {
             setMovies(moviesRes.data);

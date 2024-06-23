@@ -33,7 +33,8 @@ const ProfileSettings = () => {
   const fetchUpdateProfileData = async () => {
     try {
       const res = await axios.put(
-        "http://localhost:8000/api/users/profile",
+        "http://jiocinema-phi.vercel.app
+/api/users/profile",
         formData,
         { withCredentials: true }
       );

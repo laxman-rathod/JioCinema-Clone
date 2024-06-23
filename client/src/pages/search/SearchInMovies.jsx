@@ -16,7 +16,8 @@ const SearchInMovies = () => {
       const fetchData = async () => {
         try {
           const moviesRes = await axios.post(
-            `http://localhost:8000/api/movies/${inputData}`
+            `http://jiocinema-phi.vercel.app
+/api/movies/${inputData}`
           );
           if (moviesRes.data) {
             setMovies(moviesRes.data);
@@ -30,7 +31,8 @@ const SearchInMovies = () => {
       const fetchMovies = async () => {
         try {
           const moviesRes = await axios.get(
-            "http://localhost:8000/api/movies/hollywood-trending"
+            "http://jiocinema-phi.vercel.app
+/api/movies/hollywood-trending"
           );
           if (moviesRes.data) {
             setMovies(moviesRes.data);

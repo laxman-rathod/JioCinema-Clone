@@ -23,7 +23,8 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/users/register",
+        "http://jiocinema-phi.vercel.app
+/api/users/register",
         formData,
         { withCredentials: true } // Adding credentials
       );

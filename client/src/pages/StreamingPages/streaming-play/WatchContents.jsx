@@ -18,7 +18,8 @@ const WatchContents = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/search", {
+        const response = await axios.get("http://jiocinema-phi.vercel.app
+/search", {
           params: {
             query: title,
           },

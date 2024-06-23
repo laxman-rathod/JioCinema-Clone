@@ -20,12 +20,14 @@ const Carousels = () => {
     const fetchData = async () => {
       try {
         const currentStreamData = await axios.get(
-          `http://localhost:8000/api/${streamType}/${title}`
+          `http://jiocinema-phi.vercel.app
+/api/${streamType}/${title}`
         );
         setGenres(currentStreamData.data.genres);
 
         const response = await axios.get(
-          `http://localhost:8000/api/genres-based-contents/${Genres}`
+          `http://jiocinema-phi.vercel.app
+/api/genres-based-contents/${Genres}`
         );
         setMovies(response.data);
       } catch (err) {

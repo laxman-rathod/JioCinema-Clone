@@ -10,7 +10,8 @@ const Description = () => {
     const fetchData = async () => {
       try {
         const currentStreamData = await axios.get(
-          `http://localhost:8000/api/${streamType}/${title}`
+          `http://jiocinema-phi.vercel.app
+/api/${streamType}/${title}`
         );
         setStreamInfo(currentStreamData.data);
       } catch (err) {

@@ -19,7 +19,8 @@ const MoviesCarousels = () => {
   const fetchGenData = async (source) => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/movies/sifi-fantasy/",
+        "http://jiocinema-phi.vercel.app
+/api/movies/sifi-fantasy/",
         { cancelToken: source.token }
       );
       setMovies(response.data);
@@ -35,7 +36,8 @@ const MoviesCarousels = () => {
   const fetchSuggData = async (source) => {
     try {
       const response = await axios.post(
-        `http://localhost:8000/api/movies/search/${res.keywords}/`,
+        `http://jiocinema-phi.vercel.app
+/api/movies/search/${res.keywords}/`,
         { cancelToken: source.token }
       );
       setMovies(response.data);

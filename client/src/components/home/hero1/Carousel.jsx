@@ -27,7 +27,8 @@ const Carousel = () => {
     const fetchGenData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/movies/hollywood-movies"
+          "http://jiocinema-phi.vercel.app
+/api/movies/hollywood-movies"
         );
         setMovies(response.data);
       } catch (err) {

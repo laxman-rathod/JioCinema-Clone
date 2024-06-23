@@ -17,7 +17,8 @@ const Carousels = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/tv-shows/toprated-originals/"
+          "http://jiocinema-phi.vercel.app
+/api/tv-shows/toprated-originals/"
         );
         setTvShows(response.data);
       } catch (err) {
