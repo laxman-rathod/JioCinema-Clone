@@ -16,8 +16,7 @@ const TopResults = () => {
       const fetchData = async () => {
         try {
           const moviesRes = await axios.post(
-            `http://jiocinema-phi.vercel.app
-/api/movies/${inputData}`
+            `http://jiocinema-phi.vercel.app/api/movies/${inputData}`
           );
           if (moviesRes.data) {
             setMovies(moviesRes.data);
@@ -31,8 +30,7 @@ const TopResults = () => {
       const fetchMovies = async () => {
         try {
           const moviesRes = await axios.get(
-            "http://jiocinema-phi.vercel.app
-/api/movies/hollywood-movies/"
+            "http://jiocinema-phi.vercel.app/api/movies/hollywood-movies/"
           );
           if (moviesRes.data) {
             setMovies(moviesRes.data);

@@ -18,12 +18,14 @@ const WatchContents = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://jiocinema-phi.vercel.app
-/search", {
-          params: {
-            query: title,
-          },
-        });
+        const response = await axios.get(
+          "http://jiocinema-phi.vercel.app/search",
+          {
+            params: {
+              query: title,
+            },
+          }
+        );
         setVideos(response.data);
       } catch (error) {
         console.error("Error fetching videos:", error);

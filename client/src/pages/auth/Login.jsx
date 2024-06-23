@@ -18,8 +18,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://jiocinema-phi.vercel.app
-/api/users/login",
+        "http://jiocinema-phi.vercel.app/api/users/login",
         formData,
         { withCredentials: true }
       );

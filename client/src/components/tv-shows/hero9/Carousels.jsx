@@ -4,7 +4,7 @@ import axios from "axios";
 import "./styles9.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
+
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
@@ -17,8 +17,7 @@ const Carousels = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://jiocinema-phi.vercel.app
-/api/tv-shows/top-thrillers/"
+          "http://jiocinema-phi.vercel.app/api/tv-shows/top-thrillers/"
         );
         setTvShows(response.data);
       } catch (err) {
@@ -35,7 +34,6 @@ const Carousels = () => {
         slidesPerView={6.5}
         spaceBetween={10}
         loop={true}
-        freeMode={true}
         pagination={{
           clickable: true,
         }}

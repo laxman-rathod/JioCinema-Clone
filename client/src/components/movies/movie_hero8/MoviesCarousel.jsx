@@ -4,7 +4,7 @@ import axios from "axios";
 import "./styles8.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
+
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
@@ -19,8 +19,7 @@ const MoviesCarousel = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://jiocinema-phi.vercel.app
-/api/movies/top-rated/",
+          "http://jiocinema-phi.vercel.app/api/movies/top-rated/",
           { cancelToken: source.token }
         );
         setMovies(response.data);
@@ -46,10 +45,6 @@ const MoviesCarousel = () => {
         slidesPerView={6.5}
         spaceBetween={10}
         loop={true}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",

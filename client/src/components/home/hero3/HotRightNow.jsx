@@ -3,7 +3,7 @@ import "./styles-hero3.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
+
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import axios from "axios";
@@ -17,8 +17,7 @@ const HotRightNow = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://jiocinema-phi.vercel.app
-/api/tv-shows/toprated-originals"
+          "http://jiocinema-phi.vercel.app/api/tv-shows/toprated-originals"
         );
         setShows(res.data);
       } catch (error) {
@@ -34,10 +33,6 @@ const HotRightNow = () => {
         slidesPerView={4.5}
         spaceBetween={10}
         loop={true}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",

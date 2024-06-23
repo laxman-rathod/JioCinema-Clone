@@ -12,8 +12,7 @@ const Profile = () => {
   const handleLogout = async () => {
     try {
       const response = await axios.post(
-        "http://jiocinema-phi.vercel.app
-/api/users/logout",
+        "http://jiocinema-phi.vercel.app/api/users/logout",
         {},
         { withCredentials: true }
       );

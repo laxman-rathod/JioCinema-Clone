@@ -17,8 +17,7 @@ const MoviesCarousel = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://jiocinema-phi.vercel.app
-/api/movies/sifi-fantasy/",
+          "http://jiocinema-phi.vercel.app/api/movies/sifi-fantasy/",
           { cancelToken: source.token }
         );
         setMovies(response.data);
@@ -44,10 +43,6 @@ const MoviesCarousel = () => {
         slidesPerView={6.5}
         spaceBetween={10}
         loop={true}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",

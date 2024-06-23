@@ -35,10 +35,12 @@ const HeaderNavBar = () => {
 
   const fetchUsersData = async () => {
     try {
-      const res = await axios.get("http://jiocinema-phi.vercel.app
-/api/users/profile", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "http://jiocinema-phi.vercel.app/api/users/profile",
+        {
+          withCredentials: true,
+        }
+      );
 
       if (res.data.success) {
         const user = res.data;

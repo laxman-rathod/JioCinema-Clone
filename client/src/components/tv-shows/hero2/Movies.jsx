@@ -10,8 +10,7 @@ const Movies = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://jiocinema-phi.vercel.app
-/api/tv-shows/hot-shows/"
+          "http://jiocinema-phi.vercel.app/api/tv-shows/hot-shows/"
         );
         if (response.data) {
           setShows(response.data);
