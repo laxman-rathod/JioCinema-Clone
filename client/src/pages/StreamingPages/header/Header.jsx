@@ -96,7 +96,7 @@ const Header = () => {
         <div className="flex place-items-center gap-6 text-sm font-[900] no-underline cursor-pointer">
           <Link
             to={"/"}
-            className={`${
+            className={`link-element ${
               isActive === "home" &&
               "border-b-4 rounded-b-sm border-pink text-white"
             } text-gray transition ease-in-out duration-150 hover:text-white`}
@@ -106,7 +106,7 @@ const Header = () => {
           </Link>
           <Link
             to={"/sports"}
-            className={`${
+            className={`link-element ${
               isActive === "sports" &&
               "border-b-4 rounded-b-sm border-pink  text-white"
             } text-gray transition ease-in-out duration-150 hover:text-white`}
@@ -116,7 +116,7 @@ const Header = () => {
           </Link>
           <Link
             to={"/movies"}
-            className={`${
+            className={`link-element ${
               isActive === "movies" &&
               "border-b-4 rounded-b-sm border-pink  text-white"
             } text-gray transition ease-in-out duration-150 hover:text-white`}
@@ -127,7 +127,7 @@ const Header = () => {
 
           <Link
             to={"/tv-shows"}
-            className={`${
+            className={`link-element ${
               isActive === "tvshows" &&
               "border-b-4 rounded-b-sm border-pink  text-white"
             } text-gray transition ease-in-out duration-150 hover:text-white`}

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   setIsGenrelContents,
   setKeywords,
 } from "../../app/slices/movieSuggestions";
+import { useLocation } from "react-router-dom";
 
 const HeaderSuggestions = () => {
   const [isActive, setIsActive] = useState(0);
   const dispatch = useDispatch();
-  const currentTab = useSelector((store) => store.tabControls.currentTab);
+  const location = useLocation();
 
   const handleOnClick = (id, keywords) => {
     setIsActive(id);
@@ -18,7 +19,7 @@ const HeaderSuggestions = () => {
   };
 
   let suggestions = [];
-  if (currentTab === "movies") {
+  if (location.pathname === "/movies") {
     suggestions = [
       { name: "For You", id: uuidv4() },
       { name: "Action", id: uuidv4() },
@@ -35,7 +36,7 @@ const HeaderSuggestions = () => {
       { name: "Fantasy", id: uuidv4() },
       { name: "Drama", id: uuidv4() },
     ];
-  } else if (currentTab === "tvshows") {
+  } else if (location.pathname === "/tv-shows") {
     suggestions = [
       { name: "For You", id: uuidv4() },
       { name: "Anime", id: uuidv4() },

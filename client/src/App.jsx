@@ -15,13 +15,12 @@ import StreamingInfoContainer from "./pages/StreamingPages/streaming-info/Stream
 import Header from "./pages/StreamingPages/header/Header";
 import WatchContainer from "./pages/StreamingPages/streaming-play/WatchContainer";
 import SearchContainer from "./pages/search/SearchContainer";
-import ResetWrapper from "./util/ResetWrapper";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <div className="dark:bg-darkBg">
+      <div className="bg-darkBg">
         <Headers />
         <Outlet />
         <Footer />
@@ -97,11 +96,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return (
-    <RouterProvider router={router}>
-      <ResetWrapper />
-    </RouterProvider>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
