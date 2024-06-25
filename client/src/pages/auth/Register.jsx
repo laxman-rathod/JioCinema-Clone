@@ -28,7 +28,8 @@ const Register = () => {
         { withCredentials: true }
       );
       if (response.data.success) {
-        alert("Registration successful! You can now log in.");
+        alert("Registration successful!");
+        navigate('/');
       } else {
         alert(response.data.message || "Registration failed");
       }
