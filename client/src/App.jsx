@@ -14,7 +14,6 @@ import StreamingInfoContainer from "./pages/StreamingPages/streaming-info/Stream
 import Header from "./pages/StreamingPages/header/Header";
 import WatchContainer from "./pages/StreamingPages/streaming-play/WatchContainer";
 import SearchContainer from "./pages/search/SearchContainer";
-import ContentLoadingSkeleton from "./util/ContentLoadingSkeleton";
 
 const router = createBrowserRouter([
   {
@@ -92,12 +91,6 @@ const router = createBrowserRouter([
         <SearchContainer />
       </div>
     ),
-  },
-
-  // testing routes
-  {
-    path: "/loading",
-    element: <ContentLoadingSkeleton />,
   },
 ]);
 

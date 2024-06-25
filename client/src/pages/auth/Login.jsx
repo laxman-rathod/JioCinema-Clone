@@ -50,6 +50,7 @@ const Login = () => {
         <div className="flex place-items-center gap-3 leading-7 border-b-2">
           <h3>+91</h3>
           <input
+            required
             type="number"
             name="mobileNumber"
             value={formData.mobileNumber}
@@ -60,6 +61,7 @@ const Login = () => {
         </div>
         <div className="leading-7 border-b-2 mt-4">
           <input
+            required
             type="password"
             name="password"
             value={formData.password}

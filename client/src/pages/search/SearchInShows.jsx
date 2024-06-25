@@ -7,7 +7,7 @@ import "swiper/css";
 import { useNavigate } from "react-router-dom";
 
 const SearchInShows = () => {
-  const [movies, setMovies] = useState([]);
+  const [shows, setShows] = useState([]);
   const navigate = useNavigate();
   const inputData = useSelector((store) => store.searchData.inputValue);
 
@@ -20,7 +20,7 @@ const SearchInShows = () => {
 /api/tv-shows/${inputData}`
           );
           if (moviesRes.data) {
-            setMovies(moviesRes.data);
+            setShows(moviesRes.data);
           }
         } catch (error) {
           console.log(error.message);
@@ -28,68 +28,70 @@ const SearchInShows = () => {
       };
       fetchData();
     } else {
-      const fetchMovies = async () => {
+      const initialShows = async () => {
         try {
-          const moviesRes = await axios.get(
+          const res = await axios.get(
             "https://jiocinema-dbbw.onrender.com/api/tv-shows/toprated-originals/"
           );
-          if (moviesRes.data) {
-            setMovies(moviesRes.data);
+          if (res.data) {
+            setShows(res.data);
           }
         } catch (error) {
           console.log(error.message);
         }
       };
-      fetchMovies();
+      initialShows();
     }
   }, [inputData]);
 
   return (
     <>
       {inputData ? (
-        <div className="w-full cursor-pointer font-poppins">
-          <h1 className="text-white font-extrabold text-xl mb-8 mt-8">
-            "{inputData}" In Shows
-          </h1>
-          <div className="h-[11rem]">
-            <Swiper
-              slidesPerView={4.5}
-              spaceBetween={10}
-              loop={true}
-              className="Swiper"
-            >
-              {movies.map((show) => (
-                <SwiperSlide key={show.id}>
-                  <img
-                    src={show.thumbnail}
-                    alt={`${show.title} poster`}
-                    className="rounded-lg"
-                  />
-                  <div className="absolute w-full z-50 inset-[8.3rem] left-2 text-white">
-                    <h1 className="text-xs text-silver leading-6 font-semibold">
-                      {show.title}
-                    </h1>
-                    <div className="flex items-center gap-2 text-[0.70rem] text-lightenThik font-medium flex-wrap">
-                      <h2>{show.genres.join(" • ")}</h2>
-                      <h2>{show.ratings + "/10"}</h2>
+        shows.length > 0 && (
+          <div className="w-full cursor-pointer font-poppins">
+            <h1 className="text-white font-extrabold text-xl mb-8 mt-8">
+              "{inputData}" In Shows
+            </h1>
+            <div className="h-[11rem]">
+              <Swiper
+                slidesPerView={4.5}
+                spaceBetween={10}
+                loop={true}
+                className="Swiper"
+              >
+                {movies.map((show) => (
+                  <SwiperSlide key={show.id}>
+                    <img
+                      src={show.thumbnail}
+                      alt={`${show.title} poster`}
+                      className="rounded-lg"
+                    />
+                    <div className="absolute w-full z-50 inset-[8.3rem] left-2 text-white">
+                      <h1 className="text-xs text-silver leading-6 font-semibold">
+                        {show.title}
+                      </h1>
+                      <div className="flex items-center gap-2 text-[0.70rem] text-lightenThik font-medium flex-wrap">
+                        <h2>{show.genres.join(" • ")}</h2>
+                        <h2>{show.ratings + "/10"}</h2>
+                      </div>
                     </div>
-                  </div>
-                  <div className="absolute inset-0 bg-black opacity-30 rounded-lg"></div>
-                  <div
-                    onClick={() =>
-                      navigate(
-                        `/${
-                          show.contentType === "Movie" ? "movies" : "tv-shows"
-                        }/${show.title}`
-                      )
-                    }
-                    className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.10] transition-opacity duration-300 rounded-lg"
-                  ></div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                    <div className="absolute inset-0 bg-black opacity-30 rounded-lg"></div>
+                    <div
+                      onClick={() =>
+                        navigate(
+                          `/${
+                            show.contentType === "Movie" ? "movies" : "tv-shows"
+                          }/${show.title}`
+                        )
+                      }
+                      className="absolute inset-0 bg-white opacity-0 hover:opacity-[0.10] transition-opacity duration-300 rounded-lg"
+                    ></div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
           </div>
-        </div>
+        )
       ) : (
         <div className="w-full cursor-pointer font-poppins">
           <h1 className="text-white font-extrabold text-xl mb-8 mt-8">
@@ -102,7 +104,7 @@ const SearchInShows = () => {
               loop={true}
               className="Swiper"
             >
-              {movies.map((show) => (
+              {shows.map((show) => (
                 <SwiperSlide key={show.id}>
                   <img
                     src={show.thumbnail}
@@ -113,7 +115,7 @@ const SearchInShows = () => {
                     onClick={() =>
                       navigate(
                         `/${
-                          show.contentType === "Movie" ? "movies" : "tv-shows"
+                          show.contentType === "Movie" ? "shows" : "tv-shows"
                         }/${show.title}`
                       )
                     }

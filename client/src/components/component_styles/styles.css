@@ -34,17 +34,9 @@
   transition: all 0.2s ease-in-out;
 }
 
-.swiper-big-button-prev::after,
-.swiper-big-button-next::after {
-  font-size: 20px;
-  font-weight: 600;
-  color: rgb(197, 194, 194);
-}
-
 .swiper-big-button-prev:active,
 .swiper-big-button-next:active {
   transform: scale(0.8);
-  background: rgb(255, 24, 197);
 }
 .swiper-big-button-prev {
   left: 82%;

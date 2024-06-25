@@ -29,8 +29,7 @@ const Profile = () => {
     } catch (error) {
       console.error("Unable to logout. Please try again!", error);
       alert("Logout failed.");
-    } finally {
-    }
+    } 
   };
 
   return (

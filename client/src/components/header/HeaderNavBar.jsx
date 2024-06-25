@@ -19,7 +19,7 @@ const HeaderNavBar = () => {
 
   useEffect(() => {
     if (hasChanged) {
-      navigate("/search");
+      navigate("/search", { state: { inputValue } });
     }
   }, [hasChanged]);
 
@@ -69,8 +69,11 @@ const HeaderNavBar = () => {
     }
   };
 
-  const handleProfileClick = () => {
+  useEffect(() => {
     fetchUsersData();
+  }, []);
+
+  const handleProfileClick = () => {
     dispatch(currentStateFunc());
   };
 

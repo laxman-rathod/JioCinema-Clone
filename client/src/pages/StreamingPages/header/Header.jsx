@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaMicrophone } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { user_auth } from "../../../app/slices/userAuth";
@@ -10,25 +10,19 @@ import { currentStateFunc } from "../../../app/slices/jcSlice";
 import { inputValueChanged } from "../../../app/slices/searchData";
 
 const Header = () => {
+  const location = useLocation();
+  const focus = useRef(null);
   const [isActive, setIsActive] = useState(null);
   const dispatch = useDispatch();
-  const [inputValue, setInputValue] = useState("");
-  const [hasChanged, setHasChanged] = useState(false);
-  const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState(location.state?.inputValue);
 
-  // useEffect(() => {
-  //   if (hasChanged) {
-  //     navigate("/search");
-  //   }
-  // }, [hasChanged]);
+  useEffect(() => {
+    focus.current.focus();
+  }, []);
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
     dispatch(inputValueChanged({ inputValue: event.target.value }));
-
-    // if (!hasChanged) {
-    //   setHasChanged(true);
-    // }
   };
 
   const fetchUsersData = async () => {
@@ -153,6 +147,7 @@ const Header = () => {
           </div>
           <div className="flex place-items-center">
             <input
+              ref={focus}
               value={inputValue}
               onChange={handleChange}
               type="text"

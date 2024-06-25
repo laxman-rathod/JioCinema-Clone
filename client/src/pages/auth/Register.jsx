@@ -29,7 +29,7 @@ const Register = () => {
       );
       if (response.data.success) {
         alert("Registration successful!");
-        navigate('/');
+        navigate("/");
       } else {
         alert(response.data.message || "Registration failed");
       }
@@ -53,6 +53,7 @@ const Register = () => {
       >
         <div className="leading-7 border-b-2">
           <input
+            required
             type="text"
             name="username"
             value={formData.username}
@@ -63,6 +64,7 @@ const Register = () => {
         </div>
         <div className="leading-7 border-b-2 mt-4">
           <input
+            required
             type="email"
             name="email"
             value={formData.email}
@@ -74,6 +76,7 @@ const Register = () => {
         <div className="flex place-items-center gap-3 leading-7 border-b-2 mt-4">
           <h3 className="pl-1">+91</h3>
           <input
+            required
             type="number"
             name="mobileNumber"
             value={formData.mobileNumber}
@@ -84,6 +87,7 @@ const Register = () => {
         </div>
         <div className="leading-7 border-b-2 mt-4">
           <input
+            required
             type="password"
             name="password"
             value={formData.password}
