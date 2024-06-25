@@ -14,6 +14,7 @@ import StreamingInfoContainer from "./pages/StreamingPages/streaming-info/Stream
 import Header from "./pages/StreamingPages/header/Header";
 import WatchContainer from "./pages/StreamingPages/streaming-play/WatchContainer";
 import SearchContainer from "./pages/search/SearchContainer";
+import ContentLoadingSkeleton from "./util/ContentLoadingSkeleton";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,14 @@ const router = createBrowserRouter([
       <div className="bg-darkBg">
         <Header />
         <SearchContainer />
+      </div>
+    ),
+  },
+  {
+    path: "/loading",
+    element: (
+      <div className="bg-darkBg">
+        <ContentLoadingSkeleton />
       </div>
     ),
   },
