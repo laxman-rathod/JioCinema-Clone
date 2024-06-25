@@ -3,13 +3,15 @@ import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import "./styles1.css";
+import "../../component_styles/styles.css";
 import { Navigation } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Skeleton1 from "../../../util/Skeleton1";
 
 const Carousel = () => {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   let isGenrel = null;
@@ -28,6 +30,8 @@ const Carousel = () => {
         setMovies(response.data);
       } catch (err) {
         console.log(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -35,39 +39,45 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="w-full h-80">
-      <Swiper
-        slidesPerView={2.5}
-        centeredSlides={true}
-        spaceBetween={10}
-        loop={true}
-        navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        }}
-        modules={[Navigation]}
-        className="mySwiper"
-      >
-        {movies.map((movie) => (
-          <SwiperSlide key={movie.id}>
-            <img
-              src={movie.thumbnail}
-              alt={`${movie.title} poster`}
-              className="rounded-2xl cursor-pointer"
-              onClick={() =>
-                navigate(
-                  `/${movie.contentType === "Movie" ? "movies" : "tv-shows"}/${
-                    movie.title
-                  }`
-                )
-              }
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <div className="swiper-button-prev"></div>
-      <div className="swiper-button-next"></div>
-    </div>
+    <>
+      {isLoading ? (
+        <Skeleton1 />
+      ) : (
+        <div className="w-full h-80">
+          <Swiper
+            slidesPerView={2.5}
+            centeredSlides={true}
+            spaceBetween={10}
+            loop={true}
+            navigation={{
+              nextEl: ".swiper-big-button-next",
+              prevEl: ".swiper-big-button-prev",
+            }}
+            modules={[Navigation]}
+            className="mySwiper"
+          >
+            {movies.map((movie) => (
+              <SwiperSlide key={movie.id}>
+                <img
+                  src={movie.thumbnail}
+                  alt={`${movie.title} poster`}
+                  className="rounded-2xl cursor-pointer"
+                  onClick={() =>
+                    navigate(
+                      `/${
+                        movie.contentType === "Movie" ? "movies" : "tv-shows"
+                      }/${movie.title}`
+                    )
+                  }
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <div className="swiper-big-button-prev"></div>
+          <div className="swiper-big-button-next"></div>
+        </div>
+      )}
+    </>
   );
 };
 

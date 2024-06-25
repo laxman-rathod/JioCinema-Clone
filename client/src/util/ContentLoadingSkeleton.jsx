@@ -22,7 +22,7 @@ const ContentLoading = () => {
           </div>
         </div>
         <div className="flex place-items-center gap-[0.6rem] ml-6 mt-11">
-          {[...Array(10)].map((_, i) => (
+          {Array.from({ length: 7 }).map((_, i) => (
             <Skeleton key={i} className="size-28 rounded-2xl" />
           ))}
         </div>

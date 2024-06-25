@@ -1,11 +1,7 @@
 import React from "react";
-import "./styles5.css";
-
+import "../../component_styles/styles.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-
-import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
 
 const Carousel = () => {
   const images = [
@@ -41,14 +37,6 @@ const Carousel = () => {
         slidesPerView={6.5}
         spaceBetween={10}
         loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        }}
-        modules={[Navigation]}
         className="mySwiper"
       >
         {images.map((image, ind) => (
@@ -58,8 +46,6 @@ const Carousel = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="swiper-button-prev"></div>
-      <div className="swiper-button-next"></div>
     </div>
   );
 };

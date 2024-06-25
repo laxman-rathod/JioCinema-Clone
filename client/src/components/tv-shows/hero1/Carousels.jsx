@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-
+import "../../component_styles/styles.css";
 import "swiper/css/navigation";
-import "./styles1.css";
 import { Navigation } from "swiper/modules";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +10,7 @@ import { useSelector } from "react-redux";
 
 const Carousel = () => {
   const [tvShows, setTvShows] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const res = useSelector((store) => store.movieSuggestions);
@@ -23,6 +23,8 @@ const Carousel = () => {
       setTvShows(response.data);
     } catch (err) {
       console.log(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -34,6 +36,8 @@ const Carousel = () => {
       setTvShows(response.data);
     } catch (err) {
       console.log(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -48,12 +52,9 @@ const Carousel = () => {
         centeredSlides={true}
         spaceBetween={10}
         loop={true}
-        pagination={{
-          clickable: true,
-        }}
         navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+          nextEl: ".swiper-big-button-next",
+          prevEl: ".swiper-big-button-prev",
         }}
         modules={[Navigation]}
         className="mySwiper"
@@ -75,8 +76,8 @@ const Carousel = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="swiper-button-prev"></div>
-      <div className="swiper-button-next"></div>
+      <div className="swiper-big-button-prev"></div>
+      <div className="swiper-big-button-next"></div>
     </div>
   );
 };

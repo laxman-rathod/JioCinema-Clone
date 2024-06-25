@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Headers from "./components/header/Headers";
 import Footer from "./components/footer/Footer";
@@ -93,14 +93,16 @@ const router = createBrowserRouter([
       </div>
     ),
   },
+
+  // testing routes
+  {
+    path: "/loading",
+    element: <ContentLoadingSkeleton />,
+  },
 ]);
 
 const App = () => {
-  return (
-    <Suspense fallback={<ContentLoadingSkeleton />}>
-      <RouterProvider router={router} />
-    </Suspense>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
