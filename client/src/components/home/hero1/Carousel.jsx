@@ -31,7 +31,7 @@ const Carousel = () => {
   const fetchSuggData = async () => {
     try {
       const response = await axios.post(
-        `https://jiocinema-dbbw.onrender.com/api/tv-shows/search/${res.keywords}/`
+        `https://jiocinema-dbbw.onrender.com/api/movies/search/${res.keywords}/`
       );
       setMovies(response.data);
     } catch (err) {

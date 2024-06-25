@@ -45,7 +45,7 @@ const SearchInShows = () => {
   }, [inputData]);
 
   return (
-    <div className="h-screen">
+    <>
       {inputData ? (
         shows.length > 0 && (
           <div className="w-full cursor-pointer font-poppins">
@@ -127,7 +127,7 @@ const SearchInShows = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

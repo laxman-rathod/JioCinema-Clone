@@ -44,7 +44,7 @@ const TopResults = () => {
   }, [inputData]);
 
   return (
-    <div className="h-screen">
+    <>
       {inputData ? (
         movies.length > 0 && (
           <div className="w-full cursor-pointer font-poppins">
@@ -128,7 +128,7 @@ const TopResults = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
