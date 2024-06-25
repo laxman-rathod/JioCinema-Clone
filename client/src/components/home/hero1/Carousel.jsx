@@ -19,10 +19,6 @@ const Carousel = () => {
   isGenrel = res.isGenrelContents;
   keywords = res.keywords;
 
-  console.log("Hey..");
-  console.log(isGenrel);
-  console.log(keywords);
-
   useEffect(() => {
     const fetchGenData = async () => {
       try {
@@ -31,7 +27,7 @@ const Carousel = () => {
         );
         setMovies(response.data);
       } catch (err) {
-        console.log(err);
+        console.log(err.message);
       }
     };
 

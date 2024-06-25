@@ -22,7 +22,7 @@ const Carousel = () => {
       );
       setTvShows(response.data);
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   };
 
@@ -33,7 +33,7 @@ const Carousel = () => {
       );
       setTvShows(response.data);
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   };
 

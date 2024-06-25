@@ -23,7 +23,7 @@ const Carousel = () => {
         );
         setEpisodes(response.data);
       } catch (err) {
-        console.log(err);
+        console.log(err.message);
       }
     };
 

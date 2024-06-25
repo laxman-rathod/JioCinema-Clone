@@ -27,7 +27,7 @@ const MoviesCarousels = () => {
       if (axios.isCancel(err)) {
         console.log(err.message);
       } else {
-        console.log(err);
+        console.log(err.message);
       }
     }
   };
@@ -43,7 +43,7 @@ const MoviesCarousels = () => {
       if (axios.isCancel(err)) {
         console.log(err.message);
       } else {
-        console.log(err);
+        console.log(err.message);
       }
     }
   };

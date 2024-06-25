@@ -14,7 +14,7 @@ const Description = () => {
         );
         setStreamInfo(currentStreamData.data);
       } catch (err) {
-        console.log(err);
+        console.log(err.message);
       }
     };
 

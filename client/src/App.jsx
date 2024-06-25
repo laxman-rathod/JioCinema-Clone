@@ -1,6 +1,5 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-
 import Headers from "./components/header/Headers";
 import Footer from "./components/footer/Footer";
 import Home from "./routes/Home";
@@ -15,6 +14,7 @@ import StreamingInfoContainer from "./pages/StreamingPages/streaming-info/Stream
 import Header from "./pages/StreamingPages/header/Header";
 import WatchContainer from "./pages/StreamingPages/streaming-play/WatchContainer";
 import SearchContainer from "./pages/search/SearchContainer";
+import ContentLoadingSkeleton from "./util/ContentLoadingSkeleton";
 
 const router = createBrowserRouter([
   {
@@ -96,7 +96,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<ContentLoadingSkeleton />}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 };
 
 export default App;

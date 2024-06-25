@@ -18,7 +18,7 @@ const Movies = () => {
           setError("No data found");
         }
       } catch (err) {
-        console.log(err);
+        console.log(err.message);
       }
     };
 

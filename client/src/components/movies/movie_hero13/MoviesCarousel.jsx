@@ -27,7 +27,7 @@ const MoviesCarousel = () => {
         if (axios.isCancel(err)) {
           console.log(err.message);
         } else {
-          console.log(err);
+          console.log(err.message);
         }
       }
     };
