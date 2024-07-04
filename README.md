@@ -65,7 +65,8 @@ This web-app clones the features of JioCinema, a popular streaming platform. The
 - Netlify
 
 ## Quick Demo
-Feel free to explore the quick demo by clicking [here](https://jiocinema-clone-two.vercel.app).
+
+Feel free to explore the quick demo by clicking [here](https://jiocinema-app-clone.vercel.app).
 
 ## Getting Started 🛠️
 
